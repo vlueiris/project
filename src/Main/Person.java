@@ -37,7 +37,7 @@ public class Person {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
     // -----------------------------------
 
@@ -46,7 +46,7 @@ public class Person {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     // -----------------------------------
@@ -55,7 +55,7 @@ public class Person {
     }
 
     public int getYearOfBirth() {
-        return yearOfBirth;
+        return this.yearOfBirth;
     }
 
     // -----------------------------------
@@ -64,7 +64,7 @@ public class Person {
     }
 
     public String getPlaceOfBirth() {
-        return placeOfBirth;
+        return this.placeOfBirth;
     }
     // -----------------------------------
 
@@ -73,7 +73,7 @@ public class Person {
     }
 
     public Job getJob() {
-        return job;
+        return this.job;
     }
     // -----------------------------------
 
@@ -82,7 +82,7 @@ public class Person {
     }
 
     public Gender getGender() {
-        return gender;
+        return this.gender;
     }
     // -----------------------------------
 
@@ -91,7 +91,7 @@ public class Person {
     }
 
     public double getIncome() {
-        return income;
+        return this.income;
     }
     // -----------------------------------
 }

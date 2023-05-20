@@ -10,23 +10,26 @@ public class CargoPlane extends AirVehicle {
     public static double purchasePrice = 15000;
     public static int capacity = 100;
     public static String companyName = "Boeing";
-    
-    public static double sumTolerableWeight = 100;
 
-//    // constructor
-    public CargoPlane() {
-//            double purchasePrice, int capacity, int ID, String companyName, double sumTolerableWeight, double maxFlightHeight, double runwayLength) {
+    public static double maxFlightHeight = 8000;
+    public static double runwayLength = 800;
+
+    private double sumTolerableWeight = 100;
+
+    // // constructor
+    public CargoPlane(double sumTolerableWeight) {
         super();
-//                purchasePrice, capacity, ID, companyName, maxFlightHeight, runwayLength);
-//        setTotalPayloadWeight(sumTolerableWeight);
+        this.sumTolerableWeight = sumTolerableWeight;
+        // double purchasePrice, int capacity, int ID, String companyName, double
+        // sumTolerableWeight, double maxFlightHeight, double runwayLength) {
+        // purchasePrice, capacity, ID, companyName, maxFlightHeight, runwayLength);
+        // setTotalPayloadWeight(sumTolerableWeight);
     }
+    // -------------------------------------
 
-//    // getters and setters
-//    public double getTotalPayloadWeight() {
-//        return sumTolerableWeight;
-//    }
-//
-//    public void setTotalPayloadWeight(double sumTolerableWeight) {
-//        this.sumTolerableWeight = sumTolerableWeight;
-//    }
+    public double getTotalPayloadWeight() {
+        return this.sumTolerableWeight;
+    }
+    // -------------------------------------
+
 }

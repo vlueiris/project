@@ -86,9 +86,9 @@ public class City {
             System.out.println("3. Recruit driver");
             System.out.println("4. Show terminal info");
             System.out.println("5. Build hotel");
-            System.out.println("5. Build room in hotel");
-            System.out.println("6. Show hotel info");
-            System.out.println("7. Exit");
+            System.out.println("6. Build room in hotel");
+            System.out.println("7. Show hotel info");
+            System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
             try {

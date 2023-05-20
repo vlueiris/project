@@ -7,7 +7,7 @@ package Main.Vehicles;
 
 public class InterCityBus extends LandVehicle {
 
-    public static double purchasePrice = 2000;
+    public static double purchasePrice = 1500;
     public static int capacity = 10;
     public static String companyName = "Volvo";
 
@@ -15,10 +15,21 @@ public class InterCityBus extends LandVehicle {
 
     private int totalSeatNum;
 
-    //constructor
+    // constructor
     public InterCityBus(int totalSeatNum) {
-//            double purchasePrice, int capacity, int ID, String companyName, String fuelType, int totalSeatNum) {
         super();
-//            purchasePrice, capacity, ID, companyName, fuelType);
+        this.totalSeatNum = totalSeatNum;
+        // double purchasePrice, int capacity, int ID, String companyName, String
+        // fuelType, int totalSeatNum) {
+        // purchasePrice, capacity, ID, companyName, fuelType);
     }
+
+    public void setTotalSeatNum(int totalSeatNum) {
+        this.totalSeatNum = totalSeatNum;
+    }
+
+    public int getTotalSeatNum() {
+        return this.totalSeatNum;
+    }
+
 }

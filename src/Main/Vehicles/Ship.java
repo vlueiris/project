@@ -6,20 +6,31 @@
 package Main.Vehicles;
 
 public class Ship extends MarineVehicle {
-    
-    public static double purchasePrice=30000;
-    public static int capacity=900;
-    public static String companyName="Daewoo";
+
+    public static double purchasePrice = 30000;
+    public static int capacity = 500;
+    public static String companyName = "Daewoo";
 
     public static FuelType fuelType = FuelType.DIESEL;
     public static double minDepth = 25;
-    
-    public static int rudderNum = 2;
 
-    //constructor
-    public Ship() {
-//            double purchasePrice, int capacity, int ID, String companyName, String fuelType, double minDepth, int rudderNum) {
+    private int tonnage = 20000;
+
+    // constructor
+    public Ship(int tonnage) {
         super();
-//                purchasePrice, capacity, ID, companyName, fuelType, minDepth);
+        this.tonnage = tonnage;
+        // double purchasePrice, int capacity, int ID, String companyName, String
+        // fuelType, double minDepth, int rudderNum) {
+        // purchasePrice, capacity, ID, companyName, fuelType, minDepth);
+    }
+
+    public int getTonnage() {
+
+        return tonnage;
+    }
+
+    public void setTonnage(int paddeleNum) {
+        this.tonnage = paddeleNum;
     }
 }
