@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import Main.Vehicles.InterCityBus;
 
-public class BusTerminal extends Terminal{
+public class BusTerminal extends Terminal {
     private List<InterCityBus> buses;
 
-    private BusTerminal(double constructionCost, String cityName, String terminalName, String address, double meterage, int numVehicle) {
-        super(constructionCost, cityName, terminalName, address, meterage, numVehicle);
+    private BusTerminal(double constructionCost, String cityName, String terminalName, String address, double area,
+            int numberOfVehicles) {
+        super(constructionCost, cityName, terminalName, address, area, numberOfVehicles);
         this.buses = new ArrayList<>();
     }
 
-    public static BusTerminal createBusTerminal(double constructionCost, String cityName, String terminalName, String address, double meterage, int numVehicle) {
-        return new BusTerminal(constructionCost, cityName, terminalName, address, meterage, numVehicle);
-    }
-
+    // public static BusTerminal createBusTerminal(double constructionCost, String
+    // cityName, String terminalName,
+    // String address, double meterage, int numVehicle) {
+    // return new BusTerminal(constructionCost, cityName, terminalName, address,
+    // meterage, numVehicle);
+    // }
+    // ------------------------------------------
     public void addBus(InterCityBus bus) {
         buses.add(bus);
     }
@@ -28,6 +32,6 @@ public class BusTerminal extends Terminal{
     public List<InterCityBus> getBuses() {
         return buses;
     }
+    // ------------------------------------------
+
 }
-
-

@@ -2,15 +2,18 @@ package Main;
 
 public class Person {
 
+    // -------------------------------------
     public enum Gender {
         MALE, FEMALE
 
     }
 
+    // -------------------------------------
     public enum Job {
         PILOT, SAILOR, BUS_DRIVER, TRAIN_DRIVER, TRAIN_CREW
     }
 
+    // -------------------------------------
     private String name;
     private String lastname;
     private int yearOfBirth;

@@ -6,7 +6,7 @@
 package Main.Vehicles;
 
 enum FuelType {GASOLINE,DIESEL}
-abstract class MarineVehicle extends Vehicle{
+public abstract class MarineVehicle extends Vehicle{
     public static FuelType fuelType;
     public static double minDepth;
     //constructor

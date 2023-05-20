@@ -6,32 +6,39 @@
 package Main.Buildings;
 
 import java.util.List;
-import Main.Vehicles.Vehicle;
+import Main.Vehicles.MarineVehicle;
 import java.util.ArrayList;
 
-public class ShippingPort extends Terminal{
-    private List<Vehicle> vehicles;
+public class ShippingPort extends Terminal {
+    private List<MarineVehicle> vehicles;
     private int wharfNum;
 
-    public List<Vehicle> getVehicles() {
+    private ShippingPort(double constructionCost, String cityName, String terminalName, String address, double area,
+            int numberOfVehicles, int wharfNum) {
+        super(constructionCost, cityName, terminalName, address, area, numberOfVehicles);
+        this.wharfNum = wharfNum;
+        this.vehicles = new ArrayList<>();
+    }
+
+    // public static ShippingPort createShippingPort(double constructionCost, String
+    // cityName, String terminalName, String address, double meterage, int
+    // numVehicle, int wharfNum) {
+    // return new ShippingPort(constructionCost, cityName, terminalName, address,
+    // meterage, numVehicle, wharfNum);
+    // }
+    // ------------------------------------------
+    public List<MarineVehicle> getVehicles() {
         return vehicles;
     }
 
+    public void addVehicle(MarineVehicle vehicle) {
+        vehicles.add(vehicle);
+    }
+
+    // ------------------------------------------
     public int getNumberOfDocks() {
         return wharfNum;
     }
 
-    private ShippingPort(double constructionCost, String cityName, String terminalName, String address, double meterage, int numVehicle, int wharfNum) {
-        super(constructionCost, cityName, terminalName, address, meterage, numVehicle);
-        this.vehicles = new ArrayList<>();
-        this.wharfNum = wharfNum;
-    }
-
-    public static ShippingPort createShippingPort(double constructionCost, String cityName, String terminalName, String address, double meterage, int numVehicle, int wharfNum) {
-        return new ShippingPort(constructionCost, cityName, terminalName, address, meterage, numVehicle, wharfNum);
-    }
-
-    public void addVehicle(Vehicle vehicle) {
-        vehicles.add(vehicle);
-    }
+    // ------------------------------------------
 }
