@@ -19,8 +19,9 @@ public class Person {
     private Gender gender;
     private double income;
 
-// constructor
-    public Person(String name, String lastname, int yearOfBirth, String placeOfBirth, Job job, Gender gender, double income) {
+    // constructor
+    public Person(String name, String lastname, int yearOfBirth, String placeOfBirth, Job job, Gender gender,
+            double income) {
         setName(name);
         setLastname(lastname);
         setYearOfBirth(yearOfBirth);
@@ -30,61 +31,67 @@ public class Person {
         setIncome(income);
     }
 
-// setters
+    // -----------------------------------
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public void setIncome(double income) {
-        this.income = income;
-    }
-
-// getters
     public String getName() {
         return name;
+    }
+    // -----------------------------------
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getLastname() {
         return lastname;
     }
 
+    // -----------------------------------
+    public void setYearOfBirth(int yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
+    }
+
     public int getYearOfBirth() {
         return yearOfBirth;
+    }
+
+    // -----------------------------------
+    public void setPlaceOfBirth(String placeOfBirth) {
+        this.placeOfBirth = placeOfBirth;
     }
 
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }
+    // -----------------------------------
 
-    public String getJob() {
-        return job;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
-    public String getGender() {
+    public Job getJob() {
+        return job;
+    }
+    // -----------------------------------
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Gender getGender() {
         return gender;
+    }
+    // -----------------------------------
+
+    public void setIncome(double income) {
+        this.income = income;
     }
 
     public double getIncome() {
         return income;
     }
+    // -----------------------------------
 }
