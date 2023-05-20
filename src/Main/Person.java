@@ -10,7 +10,7 @@ public class Person {
 
     // -------------------------------------
     public enum Job {
-        PILOT, SAILOR, BUS_DRIVER, TRAIN_DRIVER, TRAIN_CREW
+        PILOT, SAILOR, BUS_DRIVER, TRAIN_DRIVER, PASSENGER_PLANE__CREW
     }
 
     // -------------------------------------

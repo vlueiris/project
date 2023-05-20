@@ -9,31 +9,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hotel {
-    private String hotelName;
     private double constructionCost;
+    private String hotelName;
     private String address;
     private int stars;
-    //private int roomsNum;
+    // private int roomsNum;
     private List<Room> rooms;
 
     // constructor
 
-    public Hotel(String hotelName, double constructionCost, String address, int stars) {
-        setHotelName(hotelName);
-        setConstructionCost(constructionCost);
-        setAddress(address);
-        setStars(stars);
+    public Hotel(double constructionCost, String hotelName, String address, int stars) {
+        this.hotelName = hotelName;
+        this.constructionCost = constructionCost;
+        this.address = address;
+        this.stars = stars;
+
+        // setHotelName(hotelName);
+        // setConstructionCost(constructionCost);
+        // setAddress(address);
+        // setStars(stars);
         this.rooms = new ArrayList<>();
     }
 
-    // methods
-
+    // ------------------------------------
     public void addRoom(Room room) {
         rooms.add(room);
     }
 
-    // getters and setters
+    public List<Room> getRooms() {
+        return rooms;
+    }
 
+    // ------------------------------------
     public String getHotelName() {
         return hotelName;
     }
@@ -42,33 +49,32 @@ public class Hotel {
         this.hotelName = hotelName;
     }
 
+    // ------------------------------------
     public double getConstructionCost() {
         return constructionCost;
     }
+    // ------------------------------------
 
-    public void setConstructionCost(double constructionCost) {
-        this.constructionCost = constructionCost;
-    }
+    // public void setConstructionCost(double constructionCost) {
+    // this.constructionCost = constructionCost;
+    // }
 
+    // ------------------------------------
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
+    // public void setAddress(String address) {
+    // this.address = address;
+    // }
+    // ------------------------------------
     public int getStars() {
         return stars;
     }
+    // ------------------------------------
 
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
+    // public void setStars(int stars) {
+    // this.stars = stars;
+    // }
 
 }
-

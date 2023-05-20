@@ -3,49 +3,53 @@ package Main.Buildings;
 public class Room {
     private int roomNum;
     private int bedsNum;
-    private double meterage;
+    private double area;
     private double roomCost;
 
     // constructor
 
-    public Room(int roomNum, int bedsNum, double meterage, double roomCost) {
+    public Room(int roomNum, int bedsNum, double area, double roomCost) {
         setRoomNumber(roomNum);
-        setBedNumber(bedsNum);
-        setArea(meterage);
+        setBedsNumber(bedsNum);
+        // setArea(area);
+        this.area = area;
         setRoomCost(roomCost);
     }
 
-    // setters and getters
+    // ------------------------------------
     public int getRoomNumber() {
-        return roomNum;
+        return this.roomNum;
     }
 
     public void setRoomNumber(int roomNum) {
         this.roomNum = roomNum;
     }
 
-    public int getBedNumber() {
-        return bedsNum;
+    // ------------------------------------
+    public int getBedsNumber() {
+        return this.bedsNum;
     }
 
-    public void setBedNumber(int bedsNum) {
+    public void setBedsNumber(int bedsNum) {
         this.bedsNum = bedsNum;
     }
 
-    public double getMeterage() {
-        return meterage;
+    // ------------------------------------
+    public double getArea() {
+        return this.area;
     }
 
-    public void setArea(double meterage) {
-        this.meterage = meterage;
-    }
+    // public void setArea(double meterage) {
+    //     this.area = meterage;
+    // }
 
+    // ------------------------------------
     public double getRoomCost() {
-        return roomCost;
+        return this.roomCost;
     }
 
     public void setRoomCost(double roomCost) {
         this.roomCost = roomCost;
     }
-    
+
 }

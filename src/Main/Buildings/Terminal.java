@@ -1,6 +1,8 @@
 package Main.Buildings;
 
 import Main.Person;
+import Main.Vehicles.Vehicle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +12,23 @@ public abstract class Terminal {
     private String terminalName;
     private String address;
     private double area;
-    private int numVehicle;
 
-    public List<Person> drivers;
+    private List<Person> drivers;
+    protected List<Vehicle> vehicles;
 
     // constructor
-    Terminal(double constructionCost, String cityName, String terminalName, String address, double area,
-            int numberOfVehicles
+    Terminal(double constructionCost, String cityName, String terminalName, String address, double area)
+
     // double constructionCost, String cityName, String terminalName, String
     // address, double meterage,
-    ) {
+    {
         this.constructionCost = constructionCost;
         this.cityName = cityName;
         this.terminalName = terminalName;
         this.address = address;
         this.area = area;
-        this.numVehicle = numberOfVehicles;
         this.drivers = new ArrayList<>();
+        this.vehicles = new ArrayList<>();
 
         // setCityName(cityName);
         // setTerminalName(terminalName);
@@ -50,6 +52,15 @@ public abstract class Terminal {
 
     public List<Person> getEmployees() {
         return drivers;
+    }
+
+    // ------------------------------------------
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
     // ------------------------------------------
@@ -94,7 +105,7 @@ public abstract class Terminal {
     // }
 
     public int getNumberOfVehicles() {
-        return numVehicle;
+        return this.vehicles.size();
     }
 
     // public void setNumberOfVehicles(int numVehicle) {
