@@ -9,9 +9,10 @@ import Main.Buildings.Airport;
 import Main.Buildings.BusTerminal;
 import Main.Buildings.Hotel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import Main.Person;
+// import Main.Person;
 import Main.Buildings.Terminal;
 import Main.Vehicles.CargoPlane;
 import Main.Vehicles.InterCityBus;
@@ -40,11 +41,9 @@ public class City {
         public String getCode() {
             return code;
         }
-        // --------------------------------------------
     }
 
-    private static final int ArrayList = 0;
-
+    // --------------------------------------------
     private List<Person> population;
     private List<Hotel> hotels;
     private List<Terminal> terminals;
@@ -87,24 +86,23 @@ public class City {
         return terminals;
     }
 
+    // ---------------------------------------
     public double getBudget() {
         return budget;
     }
 
     public void useBudget(double amount) {
+        if (amount > budget) {
+            throw new IllegalArgumentException("Not enough money!");
+        }
         budget -= amount;
     }
-    //
-    // public static void main(String[] args) {
-    // City myCity = new City(1000000, 1234.56);
-    // System.out.println("Population: " + myCity.getPopulation());
-    // System.out.println("Area: " + myCity.getArea());
-    // }
 
+    // ===================================================================================================================
     public static City the_city;
     public static Scanner scanner = new Scanner(System.in);
 
-    // -----------------------------------------------------------------------------------------------
+    // ===================================================================================================================
     public static void main(String[] args) {
 
         // ---------------------------------------
@@ -119,90 +117,89 @@ public class City {
                 new Person("Amin", "Masoodi", 1353, "Tehran", Person.Job.SAILOR, Person.Gender.MALE, 80.1));
         the_city.addPerson(
                 new Person("Alina", "Jafari", 1385, "Tabriz", Person.Job.TRAIN_DRIVER, Person.Gender.FEMALE, 75.5));
+
+        List<String> options = Arrays.asList("Build terminal", "Buy vehicle", "Recruit driver",
+                "Show terminal info", "Build hotel", "Build room in hotel", "Show hotel info");
+        List<Runnable> actions = Arrays.asList(City::buildTeminal, City::buyVehiclesForTeminal,
+                City::recuitDriversForTerminal,
+                City::showTerminalsInfo, City::buildHotel, City::buildRoomForHotel, City::showHotelsInfo);
+
+        showMenuReadUserChoiceInt2("Please select a task:", options, actions);
         // ---------------------------------------
-        // System.out.println("\u001B[31mThis text is red!\u001B[0m");
-        // System.out.println("\u001B[31mThis text is red!\u001B[0m");
-        // System.out.println("\u001B[31mThis text is red!\u001B[0m");
         // System.out.println("\u001B[31mThis text is red!\u001B[0m");
 
         // System.out.println("Area: " + myCity.getArea());
         // System.exit(0);
 
         // ---------------------------------------
-        int choice = -1;
-        while (choice != 0) {
-            showBudgetLine();
-            System.out.println("\nPlease select an option:");
-            System.out.println("1. Build terminal");
-            System.out.println("2. Buy vehicle");
-            System.out.println("3. Recruit driver");
-            System.out.println("4. Show terminal info");
-            System.out.println("5. Build hotel");
-            System.out.println("6. Build room in hotel");
-            System.out.println("7. Show hotel info");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+        // int choice = -1;
+        // while (choice != 0) {
+        // showBudgetLine();
 
-            try {
-                choice = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid choice. Please enter a number.");
-                // scanner.nextLine();
-                continue;
-            }
+        // System.out.println("\nPlease select an option:");
+        // System.out.println("1. Build terminal");
+        // System.out.println("2. Buy vehicle");
+        // System.out.println("3. Recruit driver");
+        // System.out.println("4. Show terminal info");
+        // System.out.println("5. Build hotel");
+        // System.out.println("6. Build room in hotel");
+        // System.out.println("7. Show hotel info");
+        // System.out.println("0. Exit");
+        // System.out.print("Enter your choice: ");
 
-            switch (choice) {
-                case 1:
-                    buildTeminal();
-                    break;
-                case 2:
-                    buyVehiclesForTeminal();
-                    break;
-                case 3:
-                    recuitDriversForTerminal();
-                    break;
-                case 4:
-                    showTerminalsInfo();
-                    break;
-                case 5:
-                    buildHotel();
-                    break;
-                case 6:
-                    buildRoomForHotel();
-                    break;
-                case 7:
-                    showHotelsInfo();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-        scanner.close();
+        // choice = showMenuReadUserChoiceInt("Please select a task:",
+        // Arrays.asList("Build terminal", "Buy vehicle", "Recruit driver", "Show
+        // terminal info",
+        // "Build hotel", "Build room in hotel", "Show hotel info"));
+
+        // try {
+        // choice = scanner.nextInt();
+        // } catch (Exception e) {
+        // System.out.println("Invalid choice. Please enter a number.");
+        // // scanner.nextLine();
+        // continue;
+        // }
+
+        // switch (choice) {
+        // case 1:
+        // buildTeminal();
+        // break;
+        // case 2:
+        // buyVehiclesForTeminal();
+        // break;
+        // case 3:
+        // recuitDriversForTerminal();
+        // break;
+        // case 4:
+        // showTerminalsInfo();
+        // break;
+        // case 5:
+        // buildHotel();
+        // break;
+        // case 6:
+        // buildRoomForHotel();
+        // break;
+        // case 7:
+        // showHotelsInfo();
+        // break;
+        // case 0:
+        // return;
+        // default:
+        // System.out.println("Invalid choice. Please try again.");
+        // break;
+        // }
+        // }scanner.close();
+
     }
-    // ===================================================================================================================
 
+    // ===================================================================================================================
     private static void buildTeminal() {
         int choice = -1;
         while (choice != 0) {
             showBudgetLine();
-            System.out.println("\nPlease select a terminal type to build:");
-            System.out.println("1. Airport");
-            System.out.println("2. Bus terminal");
-            System.out.println("3. Shipping port");
-            System.out.println("4. Train station");
-            System.out.println("0. Return to main menu");
-            System.out.print("Enter your choice: ");
 
-            try {
-                choice = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid choice. Please enter a number.");
-                scanner.nextLine();
-                continue;
-            }
+            choice = showMenuReadUserChoiceInt("Please select a terminal type to build:",
+                    Arrays.asList("Airport", "Bus terminal", "Shipping port", "Train station"));
 
             switch (choice) {
                 case 1:
@@ -228,8 +225,7 @@ public class City {
 
     }
 
-    // -----------------------------------------------------------------------------------------------
-
+    // ===================================================================================================================
     private static void buildAirport() {
 
         try {
@@ -354,12 +350,12 @@ public class City {
     // --------------------------------------------------------------------------
     private static void buyBoat() {
     }
-    // -----------------------------------------
 
+    // -----------------------------------------
     private static void buyShip() {
     }
-    // -----------------------------------------
 
+    // -----------------------------------------
     private static void buyBus() {
         // 1. Show list of all bus terminals by name and allow for user to choose one by
         // its number (user chooses)
@@ -389,8 +385,8 @@ public class City {
         InterCityBus bought_bus = new InterCityBus(_totalSeatNum);
         bus_terminals.get(chosen_terminal_index).addVehicle(bought_bus);
     }
-    // -----------------------------------------
 
+    // -----------------------------------------
     private static void buyTrain() {
     }
 
@@ -489,13 +485,68 @@ public class City {
     }
 
     // ===================================================================================================================
-
     private static void showBudgetLine() {
         System.out.println(ANSIColor.MAGENTA.getCode() + "-------------------------------\nRemaining budget: "
                 + the_city.budget
                 + "\n-------------------------------"
                 + ANSIColor.WHITE.getCode());
     }
-    // ===================================================================================================================
 
+    // ===================================================================================================================
+    // public static int showMenuReadUserChoiceInt(String promptString, List<String> options) {
+    //     int choice = -1;
+
+    //     System.out.print("\n" + promptString + "\n");
+
+    //     for (int i = 0; i < options.size(); i++) {
+    //         System.out.println("\t" + (i + 1) + ". " + options.get(i));
+    //     }
+    //     System.out.println("\t0. Return or exit");
+    //     System.out.print("\nEnter your choice: ");
+
+    //     try {
+    //         choice = scanner.nextInt();
+    //         if (choice < 0 || choice >= options.size()) {
+    //             throw new Exception();
+    //         }
+    //     } catch (Exception e) {
+    //         System.out.println("Invalid choice. Please enter a number.");
+    //         scanner.nextLine();
+    //         return -1;
+    //     } finally {
+    //     }
+    //     return choice;
+    // }
+
+    // ===================================================================================================================
+    public static void showMenuReadUserChoiceInt2(String promptString, List<String> options, List<Runnable> actions) {
+        int choice = -1;
+        while (choice != 0) {
+
+            System.out.print("\n" + promptString + "\n");
+
+            for (int i = 0; i < options.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + options.get(i));
+            }
+            System.out.println("\t0. Return or exit");
+            System.out.print("\nEnter your choice: ");
+
+            try {
+                choice = scanner.nextInt();
+                if (choice <= 0 || choice >= options.size()) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid choice. Please enter a number.");
+                scanner.nextLine();
+                continue;
+            }
+            // valid choice made
+            if (choice == 0)
+                break;
+            else
+                // an action was chosen
+                actions.get(choice - 1).run();
+        }
+    }
 }
