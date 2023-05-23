@@ -14,6 +14,7 @@ import java.util.List;
 
 // import Main.Person;
 import Main.Buildings.Terminal;
+import Main.Person.Job;
 import Main.Vehicles.CargoPlane;
 import Main.Vehicles.InterCityBus;
 
@@ -106,10 +107,12 @@ public class City {
     public static void main(String[] args) {
 
         // ---------------------------------------
-        final double the_budget = 100000;
-        final int max_population = 50000;
+        // Create the city
+        final double the_budget = 500000;
+        final int max_population = 500;
         the_city = new City(the_budget, max_population);
         // ---------------------------------------
+        // Build its population
         the_city.addPerson(new Person("Maryam", "Qarai", 1390, "Qom", Person.Job.PILOT, Person.Gender.FEMALE, 150.1));
         the_city.addPerson(
                 new Person("Emmet", "Emmet", 1362, "Legoland", Person.Job.BUS_DRIVER, Person.Gender.MALE, 50.1));
@@ -118,110 +121,31 @@ public class City {
         the_city.addPerson(
                 new Person("Alina", "Jafari", 1385, "Tabriz", Person.Job.TRAIN_DRIVER, Person.Gender.FEMALE, 75.5));
 
-        List<String> options = Arrays.asList("Build terminal", "Buy vehicle", "Recruit driver",
-                "Show terminal info", "Build hotel", "Build room in hotel", "Show hotel info");
+        // ---------------------------------------
+        // Now build the city itself
+        List<String> options = Arrays.asList("Build a terminal", "Buy a vehicle", "Recruit a driver",
+                "Show terminals info", "Build a hotel", "Build a room in hotel", "Show hotels info");
         List<Runnable> actions = Arrays.asList(City::buildTeminal, City::buyVehiclesForTeminal,
-                City::recuitDriversForTerminal,
+                City::employDriversForTerminal,
                 City::showTerminalsInfo, City::buildHotel, City::buildRoomForHotel, City::showHotelsInfo);
 
-        showMenuReadUserChoiceInt2("Please select a task:", options, actions);
+        showOptionsMenuChooseActions("Please select a task:", options, actions);
         // ---------------------------------------
         // System.out.println("\u001B[31mThis text is red!\u001B[0m");
-
         // System.out.println("Area: " + myCity.getArea());
         // System.exit(0);
-
-        // ---------------------------------------
-        // int choice = -1;
-        // while (choice != 0) {
-        // showBudgetLine();
-
-        // System.out.println("\nPlease select an option:");
-        // System.out.println("1. Build terminal");
-        // System.out.println("2. Buy vehicle");
-        // System.out.println("3. Recruit driver");
-        // System.out.println("4. Show terminal info");
-        // System.out.println("5. Build hotel");
-        // System.out.println("6. Build room in hotel");
-        // System.out.println("7. Show hotel info");
-        // System.out.println("0. Exit");
-        // System.out.print("Enter your choice: ");
-
-        // choice = showMenuReadUserChoiceInt("Please select a task:",
-        // Arrays.asList("Build terminal", "Buy vehicle", "Recruit driver", "Show
-        // terminal info",
-        // "Build hotel", "Build room in hotel", "Show hotel info"));
-
-        // try {
-        // choice = scanner.nextInt();
-        // } catch (Exception e) {
-        // System.out.println("Invalid choice. Please enter a number.");
-        // // scanner.nextLine();
-        // continue;
-        // }
-
-        // switch (choice) {
-        // case 1:
-        // buildTeminal();
-        // break;
-        // case 2:
-        // buyVehiclesForTeminal();
-        // break;
-        // case 3:
-        // recuitDriversForTerminal();
-        // break;
-        // case 4:
-        // showTerminalsInfo();
-        // break;
-        // case 5:
-        // buildHotel();
-        // break;
-        // case 6:
-        // buildRoomForHotel();
-        // break;
-        // case 7:
-        // showHotelsInfo();
-        // break;
-        // case 0:
-        // return;
-        // default:
-        // System.out.println("Invalid choice. Please try again.");
-        // break;
-        // }
-        // }scanner.close();
-
+        scanner.close();
     }
 
     // ===================================================================================================================
     private static void buildTeminal() {
-        int choice = -1;
-        while (choice != 0) {
-            showBudgetLine();
 
-            choice = showMenuReadUserChoiceInt("Please select a terminal type to build:",
-                    Arrays.asList("Airport", "Bus terminal", "Shipping port", "Train station"));
+        List<String> options = Arrays.asList("Airport", "Bus terminal", "Shipping port", "Train station");
+        List<Runnable> actions = Arrays.asList(City::buildAirport, City::buildBusTerminal, City::buildShippingPort,
+                City::buildTrainStation);
 
-            switch (choice) {
-                case 1:
-                    buildAirport();
-                    break;
-                case 2:
-                    buildBusTerminal();
-                    break;
-                case 3:
-                    buildShippingPort();
-                    break;
-                case 4:
-                    buildTrainStation();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-        // scanner.close();
+        showOptionsMenuChooseActions("Please select a terminal type to build:",
+                options, actions);
 
     }
 
@@ -230,24 +154,8 @@ public class City {
 
         try {
             System.out.print(
-                    "-----------------------------------------\nHow much do you want to spend for building the airport?");
+                    "-----------------------------------------\nHow much do you want to spend for building the airport? ");
             double _construction_cost = scanner.nextDouble();
-            // Eat the newline from previous input
-            scanner.nextLine();
-            System.out.print("Enter the name of the city in which the airport will be built:");
-            String _city_name = scanner.nextLine();
-            System.out.print("Enter the name of the airport:");
-            String _airport_name = scanner.nextLine();
-            System.out.print("Enter the construction site address for the airport:");
-            String _address = scanner.nextLine();
-            System.out.print("Over how much area will the airport be built?");
-            double _area = scanner.nextDouble();
-            System.out.print("Will the airport be an international airport (true/false) ?");
-            boolean _is_international = scanner.nextBoolean();
-            System.out.print("How many runways will the airport have?");
-            int _num_runways = scanner.nextInt();
-
-            // -------------------------------------------------
             // Check for available budget
             if (the_city.getBudget() < _construction_cost) {
                 System.out.println(
@@ -257,6 +165,22 @@ public class City {
             } else {
                 the_city.useBudget((_construction_cost));
             }
+            // -------------------------------------------------
+            // Eat the newline from previous input
+            scanner.nextLine();
+            System.out.print("Enter the name of the city in which the airport will be built: ");
+            String _city_name = scanner.nextLine();
+            System.out.print("Enter the name of the airport: ");
+            String _airport_name = scanner.nextLine();
+            System.out.print("Enter the construction site address for the airport: ");
+            String _address = scanner.nextLine();
+            System.out.print("Over how much area will the airport be built? ");
+            double _area = scanner.nextDouble();
+            System.out.print("Will the airport be an international airport (true/false)? ");
+            boolean _is_international = scanner.nextBoolean();
+            System.out.print("How many runways will the airport have? ");
+            int _num_runways = scanner.nextInt();
+
             // -------------------------------------------------
             Airport _airport = new Airport(_construction_cost, _city_name, _airport_name, _address, _area,
                     _is_international, _num_runways);
@@ -269,8 +193,6 @@ public class City {
             System.out.println("Invalid data type!");
 
         }
-
-        // System.out.println("Will the airport be an international airport?");
 
         // System.out.println(ANSIColor.GREEN.getCode() +
         // "\n\n================================================"
@@ -298,53 +220,12 @@ public class City {
     // ===================================================================================================================
     private static void buyVehiclesForTeminal() {
 
-        int choice = -1;
-        while (choice != 0) {
-            showBudgetLine();
-            System.out.println("\nWhat type of vehicle do you want to buy?");
-            System.out.println("1. Boat");
-            System.out.println("2. Ship");
-            System.out.println("3. Bus");
-            System.out.println("4. Train");
-            System.out.println("5. Cargo Plane");
-            System.out.println("6. Passenger Plane");
-            System.out.println("0. Return to main menu");
-            System.out.print("Enter your choice: ");
+        List<String> options = Arrays.asList("Boat", "Ship", "Bus", "Train", "Cargo Plane", "Passenger Plane");
+        List<Runnable> actions = Arrays.asList(City::buyBoat, City::buyShip, City::buyBus,
+                City::buyTrain, City::buyCargoPlane, City::buyPassengerPlane);
 
-            try {
-                choice = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid choice. Please enter a number.");
-                scanner.nextLine();
-                continue;
-            }
-
-            switch (choice) {
-                case 1:
-                    buyBoat();
-                    break;
-                case 2:
-                    buyShip();
-                    break;
-                case 3:
-                    buyBus();
-                    break;
-                case 4:
-                    buyTrain();
-                    break;
-                case 5:
-                    buyCargoPlane();
-                    break;
-                case 6:
-                    buyPassengerPlane();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
+        showOptionsMenuChooseActions("What type of vehicle do you want to buy?",
+                options, actions);
     }
 
     // --------------------------------------------------------------------------
@@ -360,19 +241,20 @@ public class City {
         // 1. Show list of all bus terminals by name and allow for user to choose one by
         // its number (user chooses)
         int chosen_terminal_index = -1;
-        List<BusTerminal> bus_terminals = new ArrayList<>();
+        List<BusTerminal> availableBusTerminals = new ArrayList<>();
         // -------------------------
-        System.out.println("\nPlease select one of bus terminals:");
+        System.out.println("\nPlease select one of the bus terminals:");
         for (Terminal _terminal : the_city.terminals) {
             if (_terminal instanceof BusTerminal) {
-                bus_terminals.add((BusTerminal) _terminal);
-                System.out.println(bus_terminals.indexOf(_terminal) + ". " + _terminal.getTerminalName());
+                availableBusTerminals.add((BusTerminal) _terminal);
+                System.out.println(availableBusTerminals.indexOf(_terminal) + ". " + _terminal.getTerminalName());
             }
             try {
                 chosen_terminal_index = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Invalid choice. Please enter a number.");
                 // scanner.nextLine();
+
                 continue;
             }
 
@@ -381,9 +263,9 @@ public class City {
         System.out.print("How many seats your buses will have?");
         int _totalSeatNum = scanner.nextInt();
 
-        // 3. Add the bus to the terminal
+        // 3. Add the bus to the city terminal
         InterCityBus bought_bus = new InterCityBus(_totalSeatNum);
-        bus_terminals.get(chosen_terminal_index).addVehicle(bought_bus);
+        availableBusTerminals.get(chosen_terminal_index).addVehicle(bought_bus);
     }
 
     // -----------------------------------------
@@ -397,12 +279,22 @@ public class City {
         int chosen_terminal_index = -1;
         List<Airport> airports = new ArrayList<>();
         // -------------------------
+        // Check for available budget
+        if (the_city.getBudget() < CargoPlane.purchasePrice) {
+            System.out.println(
+                    ANSIColor.RED.getCode() + "You don't have enough money to buy the plane!"
+                            + ANSIColor.WHITE.getCode());
+            return;
+        } else {
+            the_city.useBudget((CargoPlane.purchasePrice));
+        }
+        // -------------------------------------------------
         for (Terminal _terminal : the_city.terminals) {
             if (_terminal instanceof Airport) {
                 airports.add((Airport) _terminal);
                 System.out.println((airports.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
             }
-            System.out.println("\nPlease select one of the airports:");
+            System.out.println("\nPlease select one of the airports: ");
             try {
                 chosen_terminal_index = scanner.nextInt();
             } catch (Exception e) {
@@ -410,21 +302,10 @@ public class City {
                 // scanner.nextLine();
                 continue;
             }
-
-        }
-        // -------------------------------------------------
-        // Check for available budget
-        if (the_city.getBudget() < CargoPlane.purchasePrice) {
-            System.out.println(
-                    ANSIColor.RED.getCode() + "You don't have enough money to bug the plane!"
-                            + ANSIColor.WHITE.getCode());
-            return;
-        } else {
-            the_city.useBudget((CargoPlane.purchasePrice));
         }
         // -------------------------------------------------
         // 2. Get the specs for the bus to be added to that terminal
-        System.out.print("How much weight will your cargo plane carry?");
+        System.out.print("How much weight will your cargo plane carry? ");
         double _sumTolerableWeight = scanner.nextDouble();
 
         // 3. Add the bus to the terminal
@@ -437,15 +318,91 @@ public class City {
     }
 
     // ===================================================================================================================
-    private static void recuitDriversForTerminal() {
+    private static void employDriversForTerminal() {
+        List<String> options = Arrays.asList("Pilot", "Sailor", "Bus Driver", "Train Driver", "Passenger Plane Crew");
+        List<Runnable> actions = Arrays.asList(City::recuitPilot, City::recuitSailor, City::recuitBusDriver,
+                City::recuitTrainDriver, City::recuitPassengerPlaneCrew);
+
+        showOptionsMenuChooseActions("Which type of skill should the person you want to employ have?",
+                options, actions);
     }
 
     // --------------------------------------------------------------------------
     private static void recuitPilot() {
+        // ---------------------------------------------------------
+        // 1. Show list of all airports by name and allow for user to choose one by
+        // its number (user chooses)
+        int chosen_terminal_index = -1;
+        List<Airport> availableAirports = new ArrayList<>();
+        System.out.println("\nPlease select one of the airports:");
+        if (the_city.getTerminals().size() > 0) {
+            for (Terminal _airport : the_city.getTerminals()) {
+                if (_airport instanceof Airport) {
+                    availableAirports.add((Airport) _airport);
+                    System.out.println(availableAirports.indexOf(_airport) + ". " + _airport.getTerminalName());
+                }
+            }
+            while (true) {
+                try {
+                    chosen_terminal_index = scanner.nextInt();
+                    if (chosen_terminal_index < 0 || chosen_terminal_index >= availableAirports.size()) {
+                        throw new Exception();
+                    }
+                    break;
+
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+        } else {
+            System.out.println("The city has no airports!");
+            return;
+        }
+
+        // ---------------------------------------------------------
+        // 2. Show list of all pilots in the city who are pilots (by name) and
+        // allow for user to choose one by its number (user chooses)
+        int chosen_person_index = -1;
+        List<Person> availablePilots = new ArrayList<>();
+        System.out.println("\nPlease select one of pilots in the city to emplys:");
+        if (the_city.getPopulation().size() > 0)
+
+        {
+            for (Person _person : the_city.getPopulation()) {
+                if (_person.getJob() == Job.PILOT) {
+                    availablePilots.add(_person);
+                    System.out.println(
+                            availablePilots.indexOf(_person) + ". " + _person.getLastname() + "," +
+                                    _person.getName() + "(year of birth: )" + _person.getYearOfBirth() + "");
+                }
+            }
+            while (true) {
+                try {
+                    chosen_person_index = scanner.nextInt();
+                    if (chosen_person_index < 0 || chosen_person_index >= availablePilots.size()) {
+                        throw new Exception();
+                    }
+                    break;
+
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+        } else {
+            System.out.println("There are no pilots in the city!");
+            return;
+        }
+
+        // --------------------------------------------
+        // 3. Emply the person in the terminal
+        availableAirports.get(chosen_terminal_index).hireEmployee(the_city.getPopulation().get(chosen_person_index));
+
     }
 
     // -----------------------------------------
     private static void recuitSailor() {
+        // Get list of all persons in the city who are sailors and show them as a menu
+
     }
 
     // -----------------------------------------
@@ -486,41 +443,17 @@ public class City {
 
     // ===================================================================================================================
     private static void showBudgetLine() {
-        System.out.println(ANSIColor.MAGENTA.getCode() + "-------------------------------\nRemaining budget: "
+        System.out.println(ANSIColor.MAGENTA.getCode() + "---------------------------\nRemaining budget: "
                 + the_city.budget
-                + "\n-------------------------------"
+                + "\n---------------------------"
                 + ANSIColor.WHITE.getCode());
     }
 
     // ===================================================================================================================
-    // public static int showMenuReadUserChoiceInt(String promptString, List<String> options) {
-    //     int choice = -1;
-
-    //     System.out.print("\n" + promptString + "\n");
-
-    //     for (int i = 0; i < options.size(); i++) {
-    //         System.out.println("\t" + (i + 1) + ". " + options.get(i));
-    //     }
-    //     System.out.println("\t0. Return or exit");
-    //     System.out.print("\nEnter your choice: ");
-
-    //     try {
-    //         choice = scanner.nextInt();
-    //         if (choice < 0 || choice >= options.size()) {
-    //             throw new Exception();
-    //         }
-    //     } catch (Exception e) {
-    //         System.out.println("Invalid choice. Please enter a number.");
-    //         scanner.nextLine();
-    //         return -1;
-    //     } finally {
-    //     }
-    //     return choice;
-    // }
-
-    // ===================================================================================================================
-    public static void showMenuReadUserChoiceInt2(String promptString, List<String> options, List<Runnable> actions) {
+    public static void showOptionsMenuChooseActions(String promptString, List<String> options,
+            List<Runnable> actions) {
         int choice = -1;
+        showBudgetLine();
         while (choice != 0) {
 
             System.out.print("\n" + promptString + "\n");
@@ -533,7 +466,7 @@ public class City {
 
             try {
                 choice = scanner.nextInt();
-                if (choice <= 0 || choice >= options.size()) {
+                if (choice < 0 || choice >= options.size()) {
                     throw new Exception();
                 }
             } catch (Exception e) {

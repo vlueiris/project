@@ -25,52 +25,53 @@ public class Person {
     // constructor
     public Person(String name, String lastname, int yearOfBirth, String placeOfBirth, Job job, Gender gender,
             double income) {
-        setName(name);
-        setLastname(lastname);
-        setYearOfBirth(yearOfBirth);
-        setPlaceOfBirth(placeOfBirth);
+        this.name = name;
+        this.lastname = lastname;
+        this.yearOfBirth = yearOfBirth;
+        this.placeOfBirth = placeOfBirth;
+        this.gender = gender;
+        // Only job and income can be changed after creation of Person
         setJob(job);
-        setGender(gender);
         setIncome(income);
     }
 
     // -----------------------------------
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    // this.name = name;
+    // }
 
     public String getName() {
         return this.name;
     }
     // -----------------------------------
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+    // public void setLastname(String lastname) {
+    // this.lastname = lastname;
+    // }
 
     public String getLastname() {
         return this.lastname;
     }
 
     // -----------------------------------
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
+    // public void setYearOfBirth(int yearOfBirth) {
+    // this.yearOfBirth = yearOfBirth;
+    // }
 
     public int getYearOfBirth() {
         return this.yearOfBirth;
     }
 
     // -----------------------------------
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
+    // public void setPlaceOfBirth(String placeOfBirth) {
+    // this.placeOfBirth = placeOfBirth;
+    // }
 
     public String getPlaceOfBirth() {
         return this.placeOfBirth;
     }
-    // -----------------------------------
 
+    // -----------------------------------
     public void setJob(Job job) {
         this.job = job;
     }
@@ -79,16 +80,15 @@ public class Person {
         return this.job;
     }
     // -----------------------------------
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
+    // public void setGender(Gender gender) {
+    // this.gender = gender;
+    // }
 
     public Gender getGender() {
         return this.gender;
     }
-    // -----------------------------------
 
+    // -----------------------------------
     public void setIncome(double income) {
         this.income = income;
     }
