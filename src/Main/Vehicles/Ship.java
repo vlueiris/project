@@ -14,7 +14,7 @@ public class Ship extends MarineVehicle {
     public static FuelType fuelType = FuelType.DIESEL;
     public static double minDepth = 25;
 
-    private int tonnage = 20000;
+    private int tonnage;
 
     // constructor
     public Ship(int tonnage) {
@@ -30,7 +30,7 @@ public class Ship extends MarineVehicle {
         return tonnage;
     }
 
-    public void setTonnage(int paddeleNum) {
-        this.tonnage = paddeleNum;
-    }
+    // public void setTonnage(int paddeleNum) {
+    // this.tonnage = paddeleNum;
+    // }
 }

@@ -5,12 +5,11 @@ public class Person {
     // -------------------------------------
     public enum Gender {
         MALE, FEMALE
-
     }
 
     // -------------------------------------
     public enum Job {
-        PILOT, SAILOR, BUS_DRIVER, TRAIN_DRIVER, PASSENGER_PLANE__CREW
+        PILOT, SAILOR, BUS_DRIVER, TRAIN_DRIVER, PASSENGER_PLANE_CREW
     }
 
     // -------------------------------------
@@ -36,37 +35,21 @@ public class Person {
     }
 
     // -----------------------------------
-    // public void setName(String name) {
-    // this.name = name;
-    // }
-
     public String getName() {
         return this.name;
     }
+
     // -----------------------------------
-
-    // public void setLastname(String lastname) {
-    // this.lastname = lastname;
-    // }
-
     public String getLastname() {
         return this.lastname;
     }
 
     // -----------------------------------
-    // public void setYearOfBirth(int yearOfBirth) {
-    // this.yearOfBirth = yearOfBirth;
-    // }
-
     public int getYearOfBirth() {
         return this.yearOfBirth;
     }
 
     // -----------------------------------
-    // public void setPlaceOfBirth(String placeOfBirth) {
-    // this.placeOfBirth = placeOfBirth;
-    // }
-
     public String getPlaceOfBirth() {
         return this.placeOfBirth;
     }
