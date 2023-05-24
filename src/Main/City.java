@@ -117,34 +117,39 @@ public class City {
         // Build its population
         the_city.addPerson(new Person("Maryam", "Qarai", 1390, "Qom", Person.Job.PILOT, Person.Gender.FEMALE, 150.1));
         the_city.addPerson(
-                new Person("Emmet", "Brickowski", 1362, "Legoland", Person.Job.PILOT, Person.Gender.MALE, 500.1));
+                new Person("Emmet", "Brickowski", 1362, "Legoland", Person.Job.BUS_DRIVER, Person.Gender.MALE, 500.1));
+        the_city.addPerson(
+                new Person("Emmet", "Emmet", 1375, "Legoland", Person.Job.PILOT, Person.Gender.MALE, 500.1));
+        the_city.addPerson(
+                new Person("Emmet", "Awesome", 1375, "Legoland", Person.Job.PILOT, Person.Gender.MALE, 500.1));
         the_city.addPerson(
                 new Person("Amin", "Masoodi", 1353, "Tehran", Person.Job.SAILOR, Person.Gender.MALE, 80.1));
         the_city.addPerson(
-                new Person("Lucy", "Wyldstyle", 1370, "California", Person.Job.TRAIN_DRIVER, Person.Gender.FEMALE, 75.5));
+                new Person("Lucy", "Wyldstyle", 1370, "California", Person.Job.TRAIN_DRIVER, Person.Gender.FEMALE,
+                        75.5));
         the_city.addPerson(
-                new Person("Lloyd", " Montgomery", 2000, "LegoNinjago", Person.Job.BUS_DRIVER, Person.Gender.MALE, 65.3));
+                new Person("Lloyd", " Montgomery", 2000, "LegoNinjago", Person.Job.BUS_DRIVER, Person.Gender.MALE,
+                        65.3));
         the_city.addPerson(
                 new Person("Jay", "kay", 1385, "Seoul", Person.Job.TRAIN_DRIVER, Person.Gender.MALE, 55.6));
         the_city.addPerson(
-                new Person("Kane", "Stone", 1385, "Washington", Person.Job.PASSENGER_PLANE__CREW, Person.Gender.MALE, 175.5));
+                new Person("Kane", "Stone", 1385, "Washington", Person.Job.PASSENGER_PLANE__CREW, Person.Gender.MALE,
+                        175.5));
         the_city.addPerson(
                 new Person("Kai", "Lee", 1385, "Tokyo", Person.Job.SAILOR, Person.Gender.MALE, 85.2));
         the_city.addPerson(
                 new Person("Ella", "Gertrude", 1369, "London", Person.Job.BUS_DRIVER, Person.Gender.FEMALE, 95.5));
         the_city.addPerson(
-                new Person("Elizabeth", " Phantomhive", 1385, "Paris", Person.Job.PASSENGER_PLANE__CREW, Person.Gender.FEMALE, 750));
-        
-        
-      
+                new Person("Elizabeth", " Phantomhive", 1385, "Paris", Person.Job.PASSENGER_PLANE__CREW,
+                        Person.Gender.FEMALE, 750));
+
         // ---------------------------------------
         the_city.addTerminal(new Airport(80000, "Qom", "Mehr", "Shohada", 15000, true, 3));
         the_city.addTerminal(new Airport(80000, "Soor", "Panda", "Khersabd", 30000, true, 13));
         the_city.addTerminal(new Airport(80000, "Gooor", "Khersabad", "Shongolabd", 15000, true, 5));
         // ---------------------------------------
-        
-        
-        //----------------------------------------
+
+        // ----------------------------------------
         // Now build the city itself
         List<String> options = Arrays.asList("Build a terminal", "Buy a vehicle", "Hire a driver",
                 "Show terminals info", "Build a hotel", "Build a room in hotel", "Show hotels info");
@@ -353,79 +358,17 @@ public class City {
     // --------------------------------------------------------------------------
     private static void hirePilot() {
         // 1. Show list of all airports by name and allow for user to choose one by
-        // its number (user chooses)
-        List<Airport> availableAirports = new ArrayList<>();
-        for (Terminal _terminal : the_city.getTerminals()) {
-            if (_terminal instanceof Airport) {
-                availableAirports.add((Airport) _terminal);
-                System.out.println(
-                        "\t" + (availableAirports.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
-            }
-        }
-        if (availableAirports.size() == 0) {
-            System.out.println("The city has no airports! To emply a pilot first build an airport.");
-            return;
-        }
-        int chosen_airport_index = -1;
-        System.out.print("\nPlease select one of the airports:");
-        while (true) {
-            try {
-                chosen_airport_index = scanner.nextInt();
-                chosen_airport_index--;
-                if (chosen_airport_index < 0 || chosen_airport_index >= availableAirports.size()) {
-                    throw new Exception();
-                }
-                break;
-            } catch (Exception e) {
-                continue;
-            }
-        }
+        Terminal chosen_airport = chooseObject(Airport.class, the_city.getTerminals());
         // ---------------------------------------------------------
         // 2. Show list of all pilots in the city who are pilots (by name) and
-        // allow for user to choose one by its number (user chooses)
-        List<Person> availablePilots = new ArrayList<>();
-        for (Person _person : the_city.getPopulation()) {
-            if (_person.getJob() == Job.PILOT) {
-                availablePilots.add(_person);
-                System.out.println("\t" + (availablePilots.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
-                        _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
-            }
-        }
-        if (availablePilots.size() == 0) {
-            System.out.println("The city has no pilots!");
-            return;
-        }
-        int chosen_pilot_index = -1;
-        System.out.print("\nPlease select one of pilots of the city to employ:");
-        while (true) {
-            try {
-                chosen_pilot_index = scanner.nextInt();
-                chosen_pilot_index--;
-                if (chosen_pilot_index < 0 || chosen_pilot_index >= availablePilots.size()) {
-                    throw new Exception();
-                }
-                break;
-            } catch (Exception e) {
-                continue;
-            }
-        }
-        // -------------------------
-        Person chosen_pilot = the_city.getPopulation().get(chosen_pilot_index);
-        // Check for available budget
-        if (the_city.getBudget() < chosen_pilot.getIncome()) {
-            System.out.println(
-                    ANSIColor.RED.getCode() + "You don't have enough money to hire this pilot!"
-                            + ANSIColor.WHITE.getCode());
-            return;
-        }
-        the_city.useBudget(chosen_pilot.getIncome());
-        // --------------------------------------------
-        Terminal chosen_airport = availableAirports.get(chosen_airport_index);
+        Person chosen_pilot = choosePersonByJob(Job.PILOT, the_city.getPopulation());
+        // ---------------------------------------------------------
         // 3. Emply the person in the terminal
-        chosen_airport.hireEmployee(the_city.getPopulation().get(chosen_pilot_index));
         System.out.println(
-                ANSIColor.GREEN.getCode() + "Congrats! You have employed " + chosen_pilot.getName() + " "
-                        + chosen_pilot.getLastname() + " at the " + chosen_airport.getTerminalName() + " airport!"
+                ANSIColor.GREEN.getCode() + "\nCongrats! You have employed " +
+                        chosen_pilot.getName() + " "
+                        + chosen_pilot.getLastname() + " at the " + chosen_airport.getTerminalName()
+                        + " airport!"
                         + ANSIColor.WHITE.getCode());
 
     }
@@ -435,11 +378,11 @@ public class City {
         // 1. Show list of all shippingport by name and allow for user to choose one by
         // its number (user chooses)
         List<ShippingPort> availableShippingPorts = new ArrayList<>();
-            for (Terminal _terminal : the_city.getTerminals()) {
+        for (Terminal _terminal : the_city.getTerminals()) {
             if (_terminal instanceof ShippingPort) {
                 availableShippingPorts.add((ShippingPort) _terminal);
                 System.out.println(
-                    "\t" + (availableShippingPorts.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+                        "\t" + (availableShippingPorts.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
             }
         }
         if (availableShippingPorts.size() == 0) {
@@ -505,23 +448,22 @@ public class City {
         chosen_shippingport.hireEmployee(the_city.getPopulation().get(chosen_sailor_index));
         System.out.println(
                 ANSIColor.GREEN.getCode() + "Congrats! You have employed " + chosen_sailor.getName() + " "
-                        + chosen_sailor.getLastname() + " at the " + chosen_shippingport.getTerminalName() + " shippingport!"
+                        + chosen_sailor.getLastname() + " at the " + chosen_shippingport.getTerminalName()
+                        + " shippingport!"
                         + ANSIColor.WHITE.getCode());
-    
+
     }
-
-
 
     // -----------------------------------------
     private static void hireBusDriver() {
         // 1. Show list of all shippingport by name and allow for user to choose one by
         // its number (user chooses)
         List<BusTerminal> availableBusTerminals = new ArrayList<>();
-            for (Terminal _terminal : the_city.getTerminals()) {
+        for (Terminal _terminal : the_city.getTerminals()) {
             if (_terminal instanceof BusTerminal) {
                 availableBusTerminals.add((BusTerminal) _terminal);
                 System.out.println(
-                    "\t" + (availableBusTerminals.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+                        "\t" + (availableBusTerminals.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
             }
         }
         if (availableBusTerminals.size() == 0) {
@@ -549,8 +491,9 @@ public class City {
         for (Person _person : the_city.getPopulation()) {
             if (_person.getJob() == Job.BUS_DRIVER) {
                 availableBusDrivers.add(_person);
-                System.out.println("\t" + (availableBusDrivers.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
-                        _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
+                System.out.println(
+                        "\t" + (availableBusDrivers.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
+                                _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
             }
         }
         if (availableBusDrivers.size() == 0) {
@@ -587,9 +530,10 @@ public class City {
         chosen_bus_terminal.hireEmployee(the_city.getPopulation().get(chosen_bus_drivers_index));
         System.out.println(
                 ANSIColor.GREEN.getCode() + "Congrats! You have employed " + chosen_bus_driver.getName() + " "
-                        + chosen_bus_driver.getLastname() + " at the " + chosen_bus_terminal.getTerminalName() + " bus terminal!"
+                        + chosen_bus_driver.getLastname() + " at the " + chosen_bus_terminal.getTerminalName()
+                        + " bus terminal!"
                         + ANSIColor.WHITE.getCode());
-    
+
     }
 
     // -----------------------------------------
@@ -597,11 +541,11 @@ public class City {
         // 1. Show list of all shippingport by name and allow for user to choose one by
         // its number (user chooses)
         List<TrainStation> availableTrainStation = new ArrayList<>();
-            for (Terminal _terminal : the_city.getTerminals()) {
+        for (Terminal _terminal : the_city.getTerminals()) {
             if (_terminal instanceof TrainStation) {
                 availableTrainStation.add((TrainStation) _terminal);
                 System.out.println(
-                    "\t" + (availableTrainStation.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+                        "\t" + (availableTrainStation.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
             }
         }
         if (availableTrainStation.size() == 0) {
@@ -629,8 +573,9 @@ public class City {
         for (Person _person : the_city.getPopulation()) {
             if (_person.getJob() == Job.TRAIN_DRIVER) {
                 availableTrainDrivers.add(_person);
-                System.out.println("\t" + (availableTrainDrivers.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
-                        _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
+                System.out.println(
+                        "\t" + (availableTrainDrivers.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
+                                _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
             }
         }
         if (availableTrainDrivers.size() == 0) {
@@ -667,11 +612,11 @@ public class City {
         chosen_train_station.hireEmployee(the_city.getPopulation().get(chosen_train_drivers_index));
         System.out.println(
                 ANSIColor.GREEN.getCode() + "Congrats! You have employed " + chosen_train_driver.getName() + " "
-                        + chosen_train_driver.getLastname() + " at the " + chosen_train_station.getTerminalName() + " train station!"
+                        + chosen_train_driver.getLastname() + " at the " + chosen_train_station.getTerminalName()
+                        + " train station!"
                         + ANSIColor.WHITE.getCode());
-    
-    }
 
+    }
 
     // -----------------------------------------
     private static void hirePassengerPlaneCrew() {
@@ -679,7 +624,63 @@ public class City {
 
     // ===================================================================================================================
     private static void showTerminalsInfo() {
+        // 1. Show list of all terminals by name and allow for user to choose one by its
+
+        List<String> options = Arrays.asList("Airports", "Bus terminals", "Shipping ports", "Train stations");
+        List<Runnable> actions = Arrays.asList(City::showAirports, City::showBusTerminals, City::showShippingPorts,
+                City::showTrainStations);
+
+        showOptionsMenuChooseActions("Please select a terminal type:",
+                options, actions);
+
     }
+
+    // -----------------------------------------
+    private static void showAirports() {
+        // 1. Show list of all airports by name and allow for user to choose one by
+        // its number (user chooses)
+        List<Airport> availableAirports = new ArrayList<>();
+        for (Terminal _terminal : the_city.getTerminals()) {
+            if (_terminal instanceof Airport) {
+                availableAirports.add((Airport) _terminal);
+                System.out.println(
+                        "\t" + (availableAirports.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+            }
+        }
+        if (availableAirports.size() == 0) {
+            System.out.println("The city has no airports!");
+            return;
+        }
+        int chosen_airport_index = -1;
+        System.out.print("\nPlease select one of the airports to show its info:");
+        while (true) {
+            try {
+                chosen_airport_index = scanner.nextInt();
+                chosen_airport_index--;
+                if (chosen_airport_index < 0 || chosen_airport_index >= availableAirports.size()) {
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                continue;
+            }
+        }
+
+    }
+
+    // -----------------------------------------
+    private static void showBusTerminals() {
+
+    }
+
+    // -----------------------------------------
+    private static void showShippingPorts() {
+    }
+
+    // -----------------------------------------
+    private static void showTrainStations() {
+    }
+
     // ===================================================================================================================
 
     private static void buildHotel() {
@@ -707,6 +708,94 @@ public class City {
                 + the_city.budget
                 + "\n---------------------------"
                 + ANSIColor.WHITE.getCode());
+    }
+
+    // ===================================================================================================================
+    public static Person choosePersonByJob(Job job, List<Person> population) {
+        List<Person> personsOfProfession = new ArrayList<>();
+        System.out.println("\n\nList of " + job.name() + "s:");
+
+        for (Person _person : population) {
+            if (_person.getJob() == job) {
+                personsOfProfession.add(_person);
+                System.out.println(
+                        "\t" + (personsOfProfession.indexOf(_person) + 1) + ". " + _person.getLastname() + "," +
+                                _person.getName() + " (year of birth: " + _person.getYearOfBirth() + ")");
+            }
+        }
+
+        if (personsOfProfession.size() == 0) {
+            System.out.println("The city has no " + job.name() + "s!");
+            return null;
+        }
+        int chosen_professional_index = -1;
+        while (true) {
+            try {
+                System.out.print("Choose one of the " + job.name() + "s: ");
+
+                chosen_professional_index = scanner.nextInt();
+                chosen_professional_index--;
+                if (chosen_professional_index < 0 || chosen_professional_index >= personsOfProfession.size()) {
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid choice.");
+                scanner.nextLine();
+                continue;
+            }
+        }
+        // -------------------------
+        Person chosen_pilot = the_city.getPopulation().get(chosen_professional_index);
+        // Check for available budget
+        if (the_city.getBudget() < chosen_pilot.getIncome()) {
+            System.out.println(
+                    ANSIColor.RED.getCode() + "You don't have enough money to hire this " + job.name() + "!"
+                            + ANSIColor.WHITE.getCode());
+            return null;
+        }
+        the_city.useBudget(chosen_pilot.getIncome());
+
+        // -------------------------
+        return personsOfProfession.get(chosen_professional_index);
+    }
+
+    // ===================================================================================================================
+    public static <T extends Terminal> T chooseObject(Class<T> derivedClass, List<Terminal> terminals) {
+        List<T> derivedObjects = new ArrayList<>();
+        System.out.println("\n\nAvailable " + derivedClass.getSimpleName() + "s:");
+        for (Terminal _terminal : terminals) {
+            if (derivedClass.isInstance(_terminal)) {
+                derivedObjects.add(derivedClass.cast(_terminal));
+                System.out.println(
+                        "\t" + (derivedObjects.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+            }
+        }
+
+        if (derivedObjects.size() == 0) {
+            System.out.println("The city has no " + derivedClass.getSimpleName() + "s!");
+            return null;
+        }
+        int chosen_derivedTerminal_index = -1;
+        while (true) {
+            try {
+                System.out.print("Choose one of the " + derivedClass.getSimpleName() + "s: ");
+
+                chosen_derivedTerminal_index = scanner.nextInt();
+                chosen_derivedTerminal_index--;
+                if (chosen_derivedTerminal_index < 0 || chosen_derivedTerminal_index >= derivedObjects.size()) {
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid choice.");
+                scanner.nextLine();
+                continue;
+            }
+        }
+
+        return derivedObjects.get(chosen_derivedTerminal_index);
+
     }
 
     // ===================================================================================================================
@@ -742,4 +831,5 @@ public class City {
                 actions.get(choice - 1).run();
         }
     }
+
 }
