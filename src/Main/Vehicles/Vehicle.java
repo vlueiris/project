@@ -50,7 +50,7 @@ public abstract class Vehicle {
 //    }
 //
     public UUID getId() {
-        return this.id;
+        return id;
     }
 
 }

@@ -29,7 +29,7 @@ public class InterCityBus extends LandVehicle {
     }
 
     public int getTotalSeatNum() {
-        return this.totalSeatNum;
+        return totalSeatNum;
     }
 
 }

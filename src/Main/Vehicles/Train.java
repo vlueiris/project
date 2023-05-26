@@ -35,6 +35,7 @@ public class Train extends LandVehicle {
         // purchasePrice, capacity, ID, companyName, fuelType);
         setNumberOfWagons(wagonNum);
         setStars(starsNum);
+        
     }
 
     // ------------------------------------
@@ -58,7 +59,7 @@ public class Train extends LandVehicle {
 
     // ------------------------------------
     public WelfareFacility[] getFacilities() {
-        return this.facilities;
+        return facilities;
     }
 
     public void setFacilities(WelfareFacility[] facilities) {

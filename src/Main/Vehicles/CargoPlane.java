@@ -28,7 +28,7 @@ public class CargoPlane extends AirVehicle {
     // -------------------------------------
 
     public double getTotalPayloadWeight() {
-        return this.sumTolerableWeight;
+        return sumTolerableWeight;
     }
     // -------------------------------------
 
