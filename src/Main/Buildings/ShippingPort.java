@@ -10,7 +10,7 @@ import Main.Vehicles.MarineVehicle;
 public class ShippingPort extends Terminal {
     private int wharfNum;
 
-    private ShippingPort(double constructionCost, String cityName, String terminalName, String address, double area,
+    public ShippingPort(double constructionCost, String cityName, String terminalName, String address, double area,
             int wharfNum) {
         super(constructionCost, cityName, terminalName, address, area);
         this.wharfNum = wharfNum;
