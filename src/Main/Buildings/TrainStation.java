@@ -11,7 +11,7 @@ public class TrainStation extends Terminal {
     private int inputRailNum;
     private int outputRailNum;
 
-    private TrainStation(double constructionCost, String cityName, String terminalName, String address, double area,
+    public TrainStation(double constructionCost, String cityName, String terminalName, String address, double area,
             int inputRailNum, int outputRailNum) {
         super(constructionCost, cityName, terminalName, address, area);
         this.inputRailNum = inputRailNum;
