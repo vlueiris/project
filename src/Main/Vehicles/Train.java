@@ -5,15 +5,14 @@
  */
 package Main.Vehicles;
 
-enum Stars {
-    ONE, TWO, THREE, FOUR, FIVE
-}
-
-enum WelfareFacility {
-    RESTAURANT, RESTROOM
-}
+import java.util.ArrayList;
+import java.util.List;
 
 public class Train extends LandVehicle {
+
+    public enum WelfareFacility {
+        RESTAURANT, RESTROOM
+    }
 
     public static double purchasePrice = 30000;
     public static int capacity = 900;
@@ -22,20 +21,21 @@ public class Train extends LandVehicle {
     public static FuelType fuelType = FuelType.DIESEL;
 
     private int wagonNum;
-    private Stars starsNum;
-    private WelfareFacility[] facilities;
+    private int starsNum;
+    private List<WelfareFacility> facilities;
     // = new WelfareFacility[]{WelfareFacility.RESTAURANT, WelfareFacility.RESTROOM,
     // WelfareFacility.RESTROOM};
 
     // constructor
-    public Train(int wagonNum, Stars starsNum, WelfareFacility[] facilities) {
+    public Train(int wagonNum, int starsNum, List<WelfareFacility> facilities) {
         // (double purchasePrice, int capacity, int ID, String companyName, String
         // fuelType, int wagonNum, int starsNum) {
         super();
         // purchasePrice, capacity, ID, companyName, fuelType);
         setNumberOfWagons(wagonNum);
         setStars(starsNum);
-        
+        this.facilities = new ArrayList<>();
+
     }
 
     // ------------------------------------
@@ -48,24 +48,24 @@ public class Train extends LandVehicle {
     }
 
     // ------------------------------------
-    public Stars getStars() {
+    public int getStars() {
         return starsNum;
     }
 
-    public void setStars(Stars starsNum) {
+    public void setStars(int starsNum) {
 
         this.starsNum = starsNum;
     }
 
     // ------------------------------------
-    public WelfareFacility[] getFacilities() {
+    public List<WelfareFacility> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(WelfareFacility[] facilities) {
+    // public void setFacilities(WelfareFacility[] facilities) {
 
-        this.facilities = facilities;
-    }
+    //     this.facilities = facilities;
+    // }
     // ------------------------------------
 
 }

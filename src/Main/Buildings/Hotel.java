@@ -19,8 +19,8 @@ public class Hotel {
     // constructor
 
     public Hotel(double constructionCost, String hotelName, String address, int stars) {
-        this.hotelName = hotelName;
         this.constructionCost = constructionCost;
+        setHotelName(hotelName);
         this.address = address;
         this.stars = stars;
 
