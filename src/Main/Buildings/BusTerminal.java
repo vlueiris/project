@@ -9,7 +9,7 @@ import Main.Vehicles.InterCityBus;
 
 public class BusTerminal extends Terminal {
 
-    private BusTerminal(double constructionCost, String cityName, String terminalName, String address, double area) {
+    public BusTerminal(double constructionCost, String cityName, String terminalName, String address, double area) {
         super(constructionCost, cityName, terminalName, address, area);
     }
 
