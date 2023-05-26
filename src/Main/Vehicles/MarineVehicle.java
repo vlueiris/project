@@ -5,30 +5,30 @@
  */
 package Main.Vehicles;
 
-enum FuelType {GASOLINE,DIESEL}
-public abstract class MarineVehicle extends Vehicle{
-    public static FuelType fuelType;
+public abstract class MarineVehicle extends Vehicle {
     public static double minDepth;
-    //constructor
-    public MarineVehicle(){
-//            double purchasePrice, int capacity, int ID, String companyName, String fuelType, double minDepth) {
+
+    // constructor
+    public MarineVehicle() {
+        // double purchasePrice, int capacity, int ID, String companyName, String
+        // fuelType, double minDepth) {
         super();
-//                purchasePrice, capacity, ID, companyName);
-//        setFuelType(fuelType);
-//        setMinDepth(minDepth);
+        // purchasePrice, capacity, ID, companyName);
+        // setFuelType(fuelType);
+        // setMinDepth(minDepth);
     }
-    //setter
-//    public void setFuelType(String fuelType) {
-//        this.fuelType = fuelType;
-//    }
-//    public void setMinDepth(double minDepth) {
-//        this.minDepth = minDepth;
-//    }
-//    //getter
-//    public String getFuelType() {
-//        return fuelType;
-//    }
-//    public double getMinDepth() {
-//        return minDepth;
-//    }
+    // setter
+    // public void setFuelType(String fuelType) {
+    // this.fuelType = fuelType;
+    // }
+    // public void setMinDepth(double minDepth) {
+    // this.minDepth = minDepth;
+    // }
+    // //getter
+    // public String getFuelType() {
+    // return fuelType;
+    // }
+    // public double getMinDepth() {
+    // return minDepth;
+    // }
 }

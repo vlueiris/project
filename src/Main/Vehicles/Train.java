@@ -14,24 +14,19 @@ public class Train extends LandVehicle {
         RESTAURANT, RESTROOM
     }
 
-    public static double purchasePrice = 30000;
-    public static int capacity = 900;
-    public static String companyName = "GE";
-
-    public static FuelType fuelType = FuelType.DIESEL;
-
     private int wagonNum;
     private int starsNum;
     private List<WelfareFacility> facilities;
-    // = new WelfareFacility[]{WelfareFacility.RESTAURANT, WelfareFacility.RESTROOM,
-    // WelfareFacility.RESTROOM};
 
     // constructor
     public Train(int wagonNum, int starsNum, List<WelfareFacility> facilities) {
-        // (double purchasePrice, int capacity, int ID, String companyName, String
-        // fuelType, int wagonNum, int starsNum) {
+
         super();
-        // purchasePrice, capacity, ID, companyName, fuelType);
+        Vehicle.purchasePrice = 30000;
+        Vehicle.capacity = 900;
+        Vehicle.companyName = "GE";
+        Vehicle.fuelType = FuelType.DIESEL;
+
         setNumberOfWagons(wagonNum);
         setStars(starsNum);
         this.facilities = new ArrayList<>();
@@ -62,10 +57,6 @@ public class Train extends LandVehicle {
         return facilities;
     }
 
-    // public void setFacilities(WelfareFacility[] facilities) {
-
-    //     this.facilities = facilities;
-    // }
     // ------------------------------------
 
 }

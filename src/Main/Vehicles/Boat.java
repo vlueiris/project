@@ -6,22 +6,21 @@
 package Main.Vehicles;
 
 public class Boat extends MarineVehicle {
-    public static double purchasePrice = 800;
-    public static int capacity = 20;
-    public static String companyName = "LaCoure";
-
-    public static FuelType fuelType = FuelType.DIESEL;
-    public static double minDepth = 0.5;
 
     private int paddeleNum;
 
     // constructor
     public Boat(int paddeleNum) {
         super();
-        this.paddeleNum = paddeleNum;
-        // double purchasePrice, int capacity, int ID, String companyName, String
-        // fuelType, double minDepth,
-        // purchasePrice, capacity, ID, companyName, fuelType, minDepth);
+        Vehicle.purchasePrice = 800;
+        Vehicle.capacity = 20;
+        Vehicle.companyName = "LaCoure";
+        Vehicle.fuelType = FuelType.GASOLINE;
+
+        MarineVehicle.minDepth = 1.2;
+
+        setPaddeleNum(paddeleNum);
+
     }
 
     public int getPaddeleNum() {

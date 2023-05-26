@@ -7,27 +7,23 @@ package Main.Vehicles;
 
 public class PassengerPlane extends AirVehicle {
 
-    public static double purchasePrice = 20000;
-    public static int capacity = 200;
-    public static String companyName = "Airbus";
-
-    public static double maxFlightHeight = 11000;
-    public static double runwayLength = 600;
-
-    private int crewNum = 10;
-    private int seatRow = 4;
+    private int crewNum;
+    private int seatRow;
 
     // constructor
     public PassengerPlane(int crewNum, int seatRow) {
         super();
+        Vehicle.purchasePrice = 20000;
+        Vehicle.capacity = 200;
+        Vehicle.companyName = "Airbus";
+        Vehicle.fuelType = FuelType.GASOLINE;
+
+        AirVehicle.maxFlightHeight = 11000;
+        AirVehicle.runwayLength = 600;
+
         this.crewNum = crewNum;
         this.seatRow = seatRow;
-        // double purchasePrice, int capacity, int ID, String companyName, int crewNum,
-        // int seatRow, double maxFlightHeight, double runwayLength
-        // }) {
-        // purchasePrice, capacity, ID, companyName, maxFlightHeight, runwayLength);
-        // setNumberOfCrews(crewNum);
-        // setAircraftSeats(seatRow);
+
     }
 
     // -------------------------------------
@@ -41,4 +37,3 @@ public class PassengerPlane extends AirVehicle {
     }
 
 }
-

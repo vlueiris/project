@@ -7,23 +7,21 @@ package Main.Vehicles;
 
 public class CargoPlane extends AirVehicle {
 
-    public static double purchasePrice = 15000;
-    public static int capacity = 100;
-    public static String companyName = "Boeing";
-
-    public static double maxFlightHeight = 8000;
-    public static double runwayLength = 800;
-
-    private double sumTolerableWeight = 100;
+    private double sumTolerableWeight;
 
     // // constructor
     public CargoPlane(double sumTolerableWeight) {
         super();
+        Vehicle.purchasePrice = 15000;
+        Vehicle.capacity = 100;
+        Vehicle.companyName = "Boeing";
+        Vehicle.fuelType = FuelType.GASOLINE;
+
+        AirVehicle.maxFlightHeight = 8000;
+        AirVehicle.runwayLength = 800;
+
         this.sumTolerableWeight = sumTolerableWeight;
-        // double purchasePrice, int capacity, int ID, String companyName, double
-        // sumTolerableWeight, double maxFlightHeight, double runwayLength) {
-        // purchasePrice, capacity, ID, companyName, maxFlightHeight, runwayLength);
-        // setTotalPayloadWeight(sumTolerableWeight);
+
     }
     // -------------------------------------
 

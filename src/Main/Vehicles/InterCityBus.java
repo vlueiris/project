@@ -7,17 +7,16 @@ package Main.Vehicles;
 
 public class InterCityBus extends LandVehicle {
 
-    public static double purchasePrice = 1500;
-    public static int capacity = 10;
-    public static String companyName = "Volvo";
-
-    public static FuelType fuelType = FuelType.GASOLINE;
-
     private int totalSeatNum;
 
     // constructor
     public InterCityBus(int totalSeatNum) {
         super();
+        Vehicle.purchasePrice = 1500;
+        Vehicle.capacity = 10;
+        Vehicle.companyName = "Volvo";
+        Vehicle.fuelType = FuelType.DIESEL;
+
         this.totalSeatNum = totalSeatNum;
         // double purchasePrice, int capacity, int ID, String companyName, String
         // fuelType, int totalSeatNum) {

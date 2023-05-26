@@ -7,24 +7,23 @@ package Main.Vehicles;
 
 public abstract class LandVehicle extends Vehicle {
 
-    public static String fuelType;
-
     // constructor
-    //public LandVehicle(String fuelType) {
+    // public LandVehicle(String fuelType) {
     public LandVehicle() {
-//            double purchasePrice, int capacity, int ID, String companyName, String fuelType) {
+        // double purchasePrice, int capacity, int ID, String companyName, String
+        // fuelType) {
         super();
-//        purchasePrice, capacity, ID, companyName);
-//        setFuelType(fuelType);
+        // purchasePrice, capacity, ID, companyName);
+        // setFuelType(fuelType);
     }
 
-    //setter
-//    public void setFuelType(String fuelType) {
-//        this.fuelType = fuelType;
-//    }
-//
-//    //getter
-//    public String getFuelType() {
-//        return fuelType;
-//    }
+    // setter
+    // public void setFuelType(String fuelType) {
+    // this.fuelType = fuelType;
+    // }
+    //
+    // //getter
+    // public String getFuelType() {
+    // return fuelType;
+    // }
 }

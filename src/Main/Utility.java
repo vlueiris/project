@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 
-import Main.Utility.ANSIColor;
-
 public class Utility {
 
     // --------------------------------------------

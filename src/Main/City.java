@@ -239,11 +239,11 @@ public class City {
 
         try {
             System.out.print(
-                    "-----------------------------------------\nHow much do you want to spend for building the train_station? ");
+                    "-----------------------------------------\nHow much do you want to spend for building the train station? ");
             double _construction_cost = scanner.nextDouble();
             // Check for available budget
             if (the_city.getBudget() < _construction_cost) {
-                printErrorMessage("You don't have enough money to build the train_station!");
+                printErrorMessage("You don't have enough money to build the train station!");
 
                 return;
             } else if (_construction_cost <= 0) {
@@ -255,17 +255,17 @@ public class City {
             // -------------------------------------------------
             // Eat the newline from previous input
             scanner.nextLine();
-            System.out.print("Enter the name of the city in which the train_station will be built: ");
+            System.out.print("Enter the name of the city in which the train station will be built: ");
             String _city_name = scanner.nextLine();
-            System.out.print("Enter the name of the train_station: ");
+            System.out.print("Enter the name of the train station: ");
             String _train_station_name = scanner.nextLine();
-            System.out.print("Enter the construction site address for the train_station: ");
+            System.out.print("Enter the construction site address for the train station: ");
             String _address = scanner.nextLine();
-            System.out.print("Over how much area will the train_station be built? ");
+            System.out.print("Over how much area will the train station be built? ");
             double _area = scanner.nextDouble();
-            System.out.print("How many rails will enter the train_station? ? ");
+            System.out.print("How many rails will enter the train station? ? ");
             int _input_rail_num = scanner.nextInt();
-            System.out.print("How many rails will exit the train_station? ");
+            System.out.print("How many rails will exit the train station? ");
             int _output_rail_num = scanner.nextInt();
 
             // -------------------------------------------------
