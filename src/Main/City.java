@@ -543,11 +543,11 @@ public class City {
         // 2. Get the specs for the cargo_plane to be added to that terminal
         System.out.print("How many crew will your passenger plane have? ");
         int _crew_sum = scanner.nextInt();
-        // System.out.print("How much weight will your cargo_plane carry? ");
-        // int _seat_row = scanner.nextInt();
+        System.out.print("How many rows will your passenger plane have? ");
+        int _seat_row = scanner.nextInt();
 
         // 3. Add the cargo_plane to the city terminal
-        PassengerPlane bought_passenger_plane = new PassengerPlane(_crew_sum,);
+        PassengerPlane bought_passenger_plane = new PassengerPlane(_crew_sum, _seat_row);
         chosen_airpot.addVehicle(bought_passenger_plane);
     }
 
