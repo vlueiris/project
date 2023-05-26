@@ -13,6 +13,7 @@ import Main.Buildings.Hotel;
 import Main.Buildings.Room;
 
 import java.lang.reflect.Field;
+import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,9 +23,12 @@ import java.util.List;
 import Main.Buildings.Terminal;
 import Main.Person.Job;
 import Main.Vehicles.AirVehicle;
+import Main.Vehicles.Boat;
 import Main.Vehicles.CargoPlane;
 import Main.Vehicles.InterCityBus;
+import Main.Vehicles.PassengerPlane;
 import Main.Vehicles.Ship;
+import Main.Vehicles.Train;
 import Main.Vehicles.Vehicle;
 
 import java.util.Scanner;
@@ -255,14 +259,147 @@ public class City {
 
     // -----------------------------------------
     private static void buildTrainStation() {
+        
+        try {
+            System.out.print(
+                    "-----------------------------------------\nHow much do you want to spend for building the train_station? ");
+            double _construction_cost = scanner.nextDouble();
+            // Check for available budget
+            if (the_city.getBudget() < _construction_cost) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You don't have enough money to build the train_station!"
+                                + ANSIColor.WHITE.getCode());
+                return;
+            } else if (_construction_cost <= 0) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You must enter a positive number!"
+                                + ANSIColor.WHITE.getCode());
+
+            } else {
+                the_city.useBudget((_construction_cost));
+            }
+            // -------------------------------------------------
+            // Eat the newline from previous input
+            scanner.nextLine();
+            System.out.print("Enter the name of the city in which the train_station will be built: ");
+            String _city_name = scanner.nextLine();
+            System.out.print("Enter the name of the train_station: ");
+            String _train_station_name = scanner.nextLine();
+            System.out.print("Enter the construction site address for the train_station: ");
+            String _address = scanner.nextLine();
+            System.out.print("Over how much area will the train_station be built? ");
+            double _area = scanner.nextDouble();
+            System.out.print("How many rails will enter the train_station? ? ");
+            int _input_rail_num = scanner.nextInt();
+            System.out.print("How many rails will exit the train_station? ");
+            int _output_rail_num = scanner.nextInt();
+
+            // -------------------------------------------------
+            TrainStation _train_station = new TrainStation(_construction_cost, _city_name, _train_station_name,
+             _address, _area, _input_rail_num, _output_rail_num);
+            the_city.addTerminal(_train_station);
+
+            System.out.println(
+                    ANSIColor.GREEN.getCode() + "Congrats! Your train_station is readdy!" + ANSIColor.WHITE.getCode());
+
+        } catch (Exception e) {
+            System.out.println("Invalid data type!");
+
+        }
     }
     // -----------------------------------------
 
     private static void buildShippingPort() {
+        
+        try {
+            System.out.print(
+                    "-----------------------------------------\nHow much do you want to spend for building the shipping_port? ");
+            double _construction_cost = scanner.nextDouble();
+            // Check for available budget
+            if (the_city.getBudget() < _construction_cost) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You don't have enough money to build the shipping_port!"
+                                + ANSIColor.WHITE.getCode());
+                return;
+            } else if (_construction_cost <= 0) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You must enter a positive number!"
+                                + ANSIColor.WHITE.getCode());
+
+            } else {
+                the_city.useBudget((_construction_cost));
+            }
+            // -------------------------------------------------
+            // Eat the newline from previous input
+            scanner.nextLine();
+            System.out.print("Enter the name of the city in which the shipping_port will be built: ");
+            String _city_name = scanner.nextLine();
+            System.out.print("Enter the name of the shipping_port: ");
+            String _shipping_port_name = scanner.nextLine();
+            System.out.print("Enter the construction site address for the shipping_port: ");
+            String _address = scanner.nextLine();
+            System.out.print("Over how much area will the shipping_port be built? ");
+            double _area = scanner.nextDouble();
+            System.out.print("How many wharfs will the shipping_port have? ");
+            int _wharf_num = scanner.nextInt();
+
+            // -------------------------------------------------
+            ShippingPort _shipping_port = new ShippingPort(_construction_cost, _city_name, _shipping_port_name,
+                 _address, _area, _wharf_num);
+            the_city.addTerminal(_shipping_port);
+
+            System.out.println(
+                    ANSIColor.GREEN.getCode() + "Congrats! Your shipping_port is readdy!" + ANSIColor.WHITE.getCode());
+
+        } catch (Exception e) {
+            System.out.println("Invalid data type!");
+
+        }
     }
     // -----------------------------------------
 
     private static void buildBusTerminal() {
+       
+        try {
+            System.out.print(
+                    "-----------------------------------------\nHow much do you want to spend for building the bus_terminal? ");
+            double _construction_cost = scanner.nextDouble();
+            // Check for available budget
+            if (the_city.getBudget() < _construction_cost) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You don't have enough money to build the bus_terminal!"
+                                + ANSIColor.WHITE.getCode());
+                return;
+            } else if (_construction_cost <= 0) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You must enter a positive number!"
+                                + ANSIColor.WHITE.getCode());
+
+            } else {
+                the_city.useBudget((_construction_cost));
+            }
+            // -------------------------------------------------
+            // Eat the newline from previous input
+            scanner.nextLine();
+            System.out.print("Enter the name of the city in which the bus_terminal will be built: ");
+            String _city_name = scanner.nextLine();
+            System.out.print("Enter the name of the bus_terminal: ");
+            String _bus_terminal_name = scanner.nextLine();
+            System.out.print("Enter the construction site address for the bus_terminal: ");
+            String _address = scanner.nextLine();
+            System.out.print("Over how much area will the bus_terminal be built? ");
+            double _area = scanner.nextDouble();
+
+            // -------------------------------------------------
+            BusTerminal _bus_terminal = new BusTerminal(_construction_cost, _city_name, _bus_terminal_name, _address, _area);
+            the_city.addTerminal(_bus_terminal);
+
+            System.out.println(
+                    ANSIColor.GREEN.getCode() + "Congrats! Your bus_terminal is ready!" + ANSIColor.WHITE.getCode());
+
+        } catch (Exception e) {
+            System.out.println("Invalid data type!");
+        }
     }
 
     // ===================================================================================================================
@@ -278,20 +415,32 @@ public class City {
 
     // --------------------------------------------------------------------------
     private static void buyBoat() {
-    }
-
-    // -----------------------------------------
-    private static void buyShip() {
-        // 1. Show list of all bus terminals by name and allow for user to choose one
+        // 1. Show list of all shipping ports by name and allow for user to choose one
         Terminal chosen_shipping_port = chooseTerminal(ShippingPort.class, the_city.getTerminals());
         if (chosen_shipping_port == null) {
             return;
         }
-        // 2. Get the specs for the bus to be added to that terminal
+        // 2. Get the specs for the boat to be added to that terminal
+        System.out.print("how many paddles will your boat have? ");
+        int _paddle_num = scanner.nextInt();
+
+        // 3. Add the boat to the city terminal
+        Boat bought_boat = new Boat(_paddle_num);
+        chosen_shipping_port.addVehicle(bought_boat);
+    }
+
+    // -----------------------------------------
+    private static void buyShip() {
+        // 1. Show list of all shipping ports by name and allow for user to choose one
+        Terminal chosen_shipping_port = chooseTerminal(ShippingPort.class, the_city.getTerminals());
+        if (chosen_shipping_port == null) {
+            return;
+        }
+        // 2. Get the specs for the ship to be added to that terminal
         System.out.print("What will be the tonnage of your ship? ");
         int _tonnage = scanner.nextInt();
 
-        // 3. Add the bus to the city terminal
+        // 3. Add the ship to the city terminal
         Ship bought_ship = new Ship(_tonnage);
         chosen_shipping_port.addVehicle(bought_ship);
     }
@@ -314,51 +463,92 @@ public class City {
 
     // -----------------------------------------
     private static void buyTrain() {
+        // 1. Show list of all train stations by name and allow for user to choose one
+        Terminal chosen_train_station = chooseTerminal(TrainStation.class, the_city.getTerminals());
+        if (chosen_train_station == null) {
+            return;
+        }
+        // 2. Get the specs for the train to be added to that terminal
+        System.out.print("how many wagons will your train have? ");
+        int _wangon_num = scanner.nextInt();
+        // System.out.print("how many stars will your train have? ");
+        // Train.Stars stars_num = scanner.nextInt();
+
+        // 3. Add the train to the city terminal
+        Train bought_train = new Train(_wangon_num, );
+        chosen_train_station.addVehicle(bought_train);
     }
 
     // -----------------------------------------
     private static void buyCargoPlane() {
-        // 1. Show list of all airport by name and allow for user to choose one by
-        // its number (user chooses)
-        int chosen_terminal_index = -1;
-        List<Airport> allAirports = new ArrayList<>();
-        // -------------------------
-        // Check for available budget
-        if (the_city.getBudget() < CargoPlane.purchasePrice) {
-            System.out.println(
-                    ANSIColor.RED.getCode() + "You don't have enough money to buy the plane!"
-                            + ANSIColor.WHITE.getCode());
-            return;
-        } else {
-            the_city.useBudget((CargoPlane.purchasePrice));
-        }
-        // -------------------------------------------------
-        for (Terminal _terminal : the_city.terminals) {
-            if (_terminal instanceof Airport) {
-                allAirports.add((Airport) _terminal);
-                System.out.println((allAirports.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
-            }
-            System.out.println("\nPlease select one of the airports: ");
-            try {
-                chosen_terminal_index = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid choice. Please enter a number.");
-                // scanner.nextLine();
-                continue;
-            }
-        }
-        // -------------------------------------------------
-        // 2. Get the specs for the bus to be added to that terminal
-        System.out.print("How much weight will your cargo plane carry? ");
-        double _sumTolerableWeight = scanner.nextDouble();
+        // // 1. Show list of all airport by name and allow for user to choose one by
+        // // its number (user chooses)
+        // int chosen_terminal_index = -1;
+        // List<Airport> allAirports = new ArrayList<>();
+        // // -------------------------
+        // // Check for available budget
+        // if (the_city.getBudget() < CargoPlane.purchasePrice) {
+        //     System.out.println(
+        //             ANSIColor.RED.getCode() + "You don't have enough money to buy the plane!"
+        //                     + ANSIColor.WHITE.getCode());
+        //     return;
+        // } else {
+        //     the_city.useBudget((CargoPlane.purchasePrice));
+        // }
+        // // -------------------------------------------------
+        // for (Terminal _terminal : the_city.terminals) {
+        //     if (_terminal instanceof Airport) {
+        //         allAirports.add((Airport) _terminal);
+        //         System.out.println((allAirports.indexOf(_terminal) + 1) + ". " + _terminal.getTerminalName());
+        //     }
+        //     System.out.println("\nPlease select one of the airports: ");
+        //     try {
+        //         chosen_terminal_index = scanner.nextInt();
+        //     } catch (Exception e) {
+        //         System.out.println("Invalid choice. Please enter a number.");
+        //         // scanner.nextLine();
+        //         continue;
+        //     }
+        // }
+        // // -------------------------------------------------
+        // // 2. Get the specs for the bus to be added to that terminal
+        // System.out.print("How much weight will your cargo plane carry? ");
+        // double _sumTolerableWeight = scanner.nextDouble();
 
-        // 3. Add the bus to the terminal
-        CargoPlane bought_cargo_plane = new CargoPlane(_sumTolerableWeight);
-        allAirports.get(chosen_terminal_index - 1).addVehicle(bought_cargo_plane);
+        // // 3. Add the bus to the terminal
+
+        // CargoPlane bought_cargo_plane = new CargoPlane(_sumTolerableWeight);
+        // allAirports.get(chosen_terminal_index - 1).addVehicle(bought_cargo_plane);
+        
+        // 1. Show list of all airports by name and allow for user to choose one
+        Terminal chosen_airpot = chooseTerminal(Airport.class, the_city.getTerminals());
+        if (chosen_airpot == null) {
+            return;
+        }
+        // 2. Get the specs for the cargo_plane to be added to that terminal
+        System.out.print("How much weight will your cargo_plane carry? ");
+        double _tolerable_weight_sum = scanner.nextDouble();
+        // 3. Add the cargo_plane to the city terminal
+        CargoPlane bought_cargo_plane = new CargoPlane(_tolerable_weight_sum);
+        chosen_airpot.addVehicle(bought_cargo_plane);
     }
 
     // -----------------------------------------
     private static void buyPassengerPlane() {
+        // 1. Show list of all airports by name and allow for user to choose one
+        Terminal chosen_airpot = chooseTerminal(Airport.class, the_city.getTerminals());
+        if (chosen_airpot == null) {
+            return;
+        }
+        // 2. Get the specs for the cargo_plane to be added to that terminal
+        System.out.print("How many crew will your passenger plane have? ");
+        int _crew_sum = scanner.nextInt();
+        // System.out.print("How much weight will your cargo_plane carry? ");
+        // int _seat_row = scanner.nextInt();
+
+        // 3. Add the cargo_plane to the city terminal
+        PassengerPlane bought_passenger_plane = new PassengerPlane(_crew_sum,);
+        chosen_airpot.addVehicle(bought_passenger_plane);
     }
 
     // ===================================================================================================================
@@ -523,10 +713,20 @@ public class City {
 
     // -----------------------------------------
     private static void showShippingPorts() {
+        Terminal chosen_shipping_port = chooseTerminal(ShippingPort.class, the_city.getTerminals());
+        if (chosen_shipping_port == null) {
+            return;
+        }
+        listProperties(chosen_shipping_port);
     }
 
     // -----------------------------------------
     private static void showTrainStations() {
+        Terminal chosen_train_station = chooseTerminal(TrainStation.class, the_city.getTerminals());
+        if (chosen_train_station == null) {
+            return;
+        }
+        listProperties(chosen_train_station);
     }
 
     // ===================================================================================================================
