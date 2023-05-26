@@ -12,49 +12,22 @@ import Main.Buildings.TrainStation;
 import Main.Buildings.Hotel;
 import Main.Buildings.Room;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-// import Main.Person;
 import Main.Buildings.Terminal;
 import Main.Person.Job;
-import Main.Vehicles.AirVehicle;
 import Main.Vehicles.Boat;
 import Main.Vehicles.CargoPlane;
 import Main.Vehicles.InterCityBus;
 import Main.Vehicles.PassengerPlane;
 import Main.Vehicles.Ship;
 import Main.Vehicles.Train;
-import Main.Vehicles.Vehicle;
 
 import java.util.Scanner;
 
 public class City {
-
-    // --------------------------------------------
-    public enum ANSIColor {
-        BLACK("\u001B[30m"),
-        RED("\u001B[31m"),
-        GREEN("\u001B[32m"),
-        YELLOW("\u001B[33m"),
-        BLUE("\u001B[34m"),
-        MAGENTA("\u001B[35m"),
-        CYAN("\u001B[36m"),
-        WHITE("\u001B[37m");
-
-        private final String code;
-
-        ANSIColor(String code) {
-            this.code = code;
-        }
-
-        public String getCode() {
-            return code;
-        }
-    }
 
     // --------------------------------------------
     private List<Person> population;
@@ -185,7 +158,7 @@ public class City {
                 City::hireyDriversForTerminal,
                 City::showTerminalsInfo, City::buildHotel, City::buildRoomForHotel, City::showHotelsInfo);
 
-        showOptionsMenuChooseActions("Please select a task:", options, actions);
+        Utility.showOptionsMenuChooseActions("Please select a task:", options, actions);
         // ---------------------------------------
         // System.out.println("Area: " + myCity.getArea());
         // System.exit(0);
@@ -199,7 +172,7 @@ public class City {
         List<Runnable> actions = Arrays.asList(City::buildAirport, City::buildBusTerminal, City::buildShippingPort,
                 City::buildTrainStation);
 
-        showOptionsMenuChooseActions("Please select a terminal type to build:",
+        Utility.showOptionsMenuChooseActions("Please select a terminal type to build:",
                 options, actions);
 
     }
@@ -401,7 +374,7 @@ public class City {
         List<Runnable> actions = Arrays.asList(City::buyBoat, City::buyShip, City::buyBus,
                 City::buyTrain, City::buyCargoPlane, City::buyPassengerPlane);
 
-        showOptionsMenuChooseActions("What type of vehicle do you want to buy?",
+        Utility.showOptionsMenuChooseActions("What type of vehicle do you want to buy?",
                 options, actions);
     }
 
@@ -611,7 +584,7 @@ public class City {
         List<Runnable> actions = Arrays.asList(City::hirePilot, City::hireSailor, City::hireBusDriver,
                 City::hireTrainDriver, City::hirePassengerPlaneCrew);
 
-        showOptionsMenuChooseActions("Which type of skill should the person you want to employ have?",
+        Utility.showOptionsMenuChooseActions("Which type of skill should the person you want to employ have?",
                 options, actions);
     }
 
@@ -741,7 +714,7 @@ public class City {
         List<Runnable> actions = Arrays.asList(City::showAirports, City::showBusTerminals, City::showShippingPorts,
                 City::showTrainStations);
 
-        showOptionsMenuChooseActions("Please select a terminal type:",
+        Utility.showOptionsMenuChooseActions("Please select a terminal type:",
                 options, actions);
     }
 
@@ -752,7 +725,7 @@ public class City {
         if (chosen_airport == null) {
             return;
         }
-        listProperties(chosen_airport);
+        Utility.listProperties(chosen_airport);
 
     }
 
@@ -762,7 +735,7 @@ public class City {
         if (chosen_bus_terminal == null) {
             return;
         }
-        listProperties(chosen_bus_terminal);
+        Utility.listProperties(chosen_bus_terminal);
 
     }
 
@@ -772,7 +745,7 @@ public class City {
         if (chosen_shipping_port == null) {
             return;
         }
-        listProperties(chosen_shipping_port);
+        Utility.listProperties(chosen_shipping_port);
     }
 
     // -----------------------------------------
@@ -781,7 +754,7 @@ public class City {
         if (chosen_train_station == null) {
             return;
         }
-        listProperties(chosen_train_station);
+        Utility.listProperties(chosen_train_station);
     }
 
     // ===================================================================================================================
@@ -900,31 +873,31 @@ public class City {
         // -------------------------------------------
         Hotel chosen_hotel = availableHotels.get(chosen_hotel_index);
 
-        listProperties(chosen_hotel);
+        Utility.listProperties(chosen_hotel);
 
     }
 
     // ===================================================================================================================
-    private static void showBudgetLine() {
-        System.out.println(ANSIColor.MAGENTA.getCode() + "---------------------------\nRemaining budget: "
+    static void showBudgetLine() {
+        System.out.println(Utility.ANSIColor.MAGENTA.getCode() + "---------------------------\nRemaining budget: "
                 + the_city.budget
                 + "\n---------------------------"
-                + ANSIColor.WHITE.getCode());
+                + Utility.ANSIColor.WHITE.getCode());
     }
 
     // ===================================================================================================================
     public static void printSuccessMessage(String msg) {
         System.out.println(
-                ANSIColor.GREEN.getCode() + msg
-                        + ANSIColor.WHITE.getCode());
+                Utility.ANSIColor.GREEN.getCode() + msg
+                        + Utility.ANSIColor.WHITE.getCode());
 
     }
 
     // --------------------------------------------
     public static void printErrorMessage(String msg) {
         System.out.println(
-                ANSIColor.RED.getCode() + msg
-                        + ANSIColor.WHITE.getCode());
+                Utility.ANSIColor.RED.getCode() + msg
+                        + Utility.ANSIColor.WHITE.getCode());
 
     }
 
@@ -1013,76 +986,6 @@ public class City {
 
         return derivedObjects.get(chosen_derivedTerminal_index);
 
-    }
-
-    // ===================================================================================================================
-    public static void listProperties(Object obj) {
-        Class<?> clazz = obj.getClass();
-
-        System.out.print("\n");
-        while (clazz != null) {
-
-            for (Field field : clazz.getDeclaredFields()) {
-                field.setAccessible(true);
-
-                try {
-                    Object value = field.get(obj);
-                    // System.out.println(field.getName() + " = " + value);
-                    System.out.print(
-                            ANSIColor.BLUE.getCode() + "\t" + field.getName() + " = " + ANSIColor.WHITE.getCode());
-
-                    if (value instanceof Collection) {
-                        System.out.println(ANSIColor.BLUE.getCode() + "[" + ANSIColor.WHITE.getCode());
-                        for (Object item : (Collection<?>) value) {
-                            listProperties(item);
-                        }
-                        System.out.println(ANSIColor.BLUE.getCode() + "]" + ANSIColor.WHITE.getCode());
-                    } else {
-                        System.out.println(ANSIColor.BLUE.getCode() + value + ANSIColor.WHITE.getCode());
-                    }
-
-                } catch (IllegalAccessException e) {
-                    // handle exception
-                }
-            }
-            clazz = clazz.getSuperclass();
-
-        }
-    }
-
-    // ===================================================================================================================
-    public static void showOptionsMenuChooseActions(String promptString, List<String> options,
-            List<Runnable> actions) {
-        int chosen_index = -2;
-        showBudgetLine();
-        while (chosen_index != -1) {
-
-            System.out.print("\n" + promptString + "\n");
-
-            for (int i = 0; i < options.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + options.get(i));
-            }
-            System.out.println("\t0. Return or exit");
-            System.out.print("\nEnter your choice: ");
-
-            try {
-                chosen_index = scanner.nextInt();
-                chosen_index--;
-                if (chosen_index < -1 || chosen_index >= options.size()) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                printErrorMessage("Invalid choice. Please enter a number.");
-                scanner.nextLine();
-                continue;
-            }
-            // valid choice made
-            if (chosen_index == -1)
-                break;
-            else
-                // an action was chosen
-                actions.get(chosen_index).run();
-        }
     }
 
 }
