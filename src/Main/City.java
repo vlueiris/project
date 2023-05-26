@@ -732,15 +732,56 @@ public class City {
     // ===================================================================================================================
 
     private static void buildHotel() {
+                
+        try {
+            System.out.print(
+                    "-----------------------------------------\nHow much do you want to spend for building the hotel? ");
+            double _construction_cost = scanner.nextDouble();
+            // Check for available budget
+            if (the_city.getBudget() < _construction_cost) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You don't have enough money to build the hotel!"
+                                + ANSIColor.WHITE.getCode());
+                return;
+            } else if (_construction_cost <= 0) {
+                System.out.println(
+                        ANSIColor.RED.getCode() + "You must enter a positive number!"
+                                + ANSIColor.WHITE.getCode());
 
+            } else {
+                the_city.useBudget((_construction_cost));
+            }
+            // -------------------------------------------------
+            // Eat the newline from previous input
+            scanner.nextLine();
+            System.out.print("Enter the name of the hotel: ");
+            String _hotel_name = scanner.nextLine();
+            System.out.print("Enter the construction site address for the hotel: ");
+            String _address = scanner.nextLine();
+            System.out.print("How many stars do you want the hotel to have? ");
+            int _stars = scanner.nextInt();
+            // System.out.print("How many wharfs will the shipping_port have? ");
+            // int _wharf_num = scanner.nextInt();
+
+            // -------------------------------------------------
+            Hotel _hotel = new Hotel(_construction_cost, _hotel_name, 
+                _address, _stars);
+            the_city.addHotel(_hotel);
+
+            System.out.println(
+                    ANSIColor.GREEN.getCode() + "Congrats! Your hotel is readdy!" + ANSIColor.WHITE.getCode());
+
+        } catch (Exception e) {
+            System.out.println("Invalid data type!");
+
+        }
     }
+
     // ===================================================================================================================
 
     private static void buildRoomForHotel() {
         // 1. Show list of all hotels by name and allow for user to choose one by its
         // number (user chooses)
-        // 1. Show list of all shippingport by name and allow for user to choose one by
-        // its number (user chooses)
         List<Hotel> availableHotels = the_city.getHotels();
         for (Hotel _hotel : availableHotels) {
             System.out.println(
